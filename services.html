@@ -30,7 +30,6 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      background: var(--nav-bg);
       backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
@@ -535,6 +534,161 @@
       .cta-buttons { flex-direction: column; align-items: center; }
       .btn-primary, .btn-ghost { width: 100%; max-width: 320px; text-align: center; }
     }
+
+    /* ─── MODAL ─── */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5,5,15,0.82);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: #fff;
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      animation: modalIn 0.3s ease both;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(24px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-img {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+    }
+
+    .modal-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,5,20,0.55), transparent 60%);
+    }
+
+    .modal-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 4px;
+      background: var(--gradient);
+    }
+
+    .modal-body {
+      padding: 36px 38px 44px;
+    }
+
+    .modal-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: rgba(155,63,212,0.55);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .modal-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 900;
+      color: #1a1a2e;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .modal-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 26px;
+    }
+
+    .modal-list {
+      list-style: none;
+      padding: 0;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .modal-list li {
+      font-size: 13.5px;
+      color: #444;
+      line-height: 1.7;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-list li::before {
+      content: '';
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gradient);
+      flex-shrink: 0;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 36px; height: 36px;
+      border: none;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #333;
+      z-index: 10;
+      transition: background 0.2s, transform 0.2s;
+      line-height: 1;
+    }
+
+    .modal-close:hover { background: #fff; transform: scale(1.1); }
+
+    /* ─── CARD CLICK STYLE ─── */
+    .service-card { cursor: pointer; }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-cta svg { flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -543,7 +697,7 @@
   <header class="topbar" id="topbar">
     <a class="logo" href="index.html">
       <img
-        src="https://static.wixstatic.com/media/9c039d_a5d02242728c4a68bd9b38f7615494df~mv2.png/v1/fill/w_205,h_89,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Copy%20of%20Top%2010%20Must-See%20Sights%20in%20(1).png"
+        src="images/4mlogo.png"
         alt="4ML Logo"
       />
     </a>
@@ -554,7 +708,6 @@
       <ul>
         <li><a href="about.html">About Us</a></li>
         <li><a href="services.html" class="active">Our Services</a></li>
-        <li><a href=".html"></a></li>
         <li><a href="clients.html">Our Clients</a></li>
         <li><a href="leadteam.html">Lead Team</a></li>
         <li><a href="contact.html">Contact Us</a></li>
@@ -580,7 +733,7 @@
     <div class="services-grid">
 
       <!-- Broadcast & Live Transmission -->
-      <div class="service-card">
+      <div class="service-card" onclick="openModal('modal-01')">
         <div class="service-card-img">
           <img src="media/IMG20221211180229.jpg" alt="Broadcast & Live Transmission" />
           <div class="service-card-img-overlay"></div>
@@ -588,18 +741,13 @@
         <div class="service-card-body">
           <div class="service-num">01</div>
           <h2>Broadcast &amp; Live<br>Transmission</h2>
-          <p>From live events to digital streaming, we manage the technical complexities of real-time transmission.</p>
-          <ul>
-            <li>Hybrid Meetings</li>
-            <li>Live Streaming</li>
-            <li>Virtual Events</li>
-            <li>Video Conferencing</li>
-          </ul>
+          <p>Real-time technical management for live events and digital streaming.</p>
+          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#5B6CF5"/><stop offset="100%" stop-color="#F0408A"/></linearGradient></defs><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
       </div>
 
       <!-- Technical Infrastructure & Asset Management -->
-      <div class="service-card">
+      <div class="service-card" onclick="openModal('modal-02')">
         <div class="service-card-img">
           <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?w=700&q=80" alt="Technical Infrastructure" />
           <div class="service-card-img-overlay"></div>
@@ -607,18 +755,13 @@
         <div class="service-card-body">
           <div class="service-num">02</div>
           <h2>Technical Infrastructure<br>&amp; Asset Management</h2>
-          <p>We provide access to industry-standard technology, ensuring creators have the tools they need without the overhead of ownership.</p>
-          <ul>
-            <li>Cinema &amp; Broadcast Cameras</li>
-            <li>Grip &amp; Lighting</li>
-            <li>Audio Solutions</li>
-            <li>Procurement &amp; Specialized Media Hardware</li>
-          </ul>
+          <p>Industry-standard technology and equipment — without the overhead of ownership.</p>
+          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
       </div>
 
       <!-- Strategic Consultancy & System Integration -->
-      <div class="service-card">
+      <div class="service-card" onclick="openModal('modal-03')">
         <div class="service-card-img">
           <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=700&q=80" alt="Strategic Consultancy" />
           <div class="service-card-img-overlay"></div>
@@ -626,18 +769,13 @@
         <div class="service-card-body">
           <div class="service-num">03</div>
           <h2>Strategic Consultancy<br>&amp; System Integration</h2>
-          <p>We offer strategic guidance to help organizations optimize their media presence and internal workflows.</p>
-          <ul>
-            <li>Media Workflow Optimization</li>
-            <li>Digital Transformation for Corporate Communication</li>
-            <li>Technical Feasibility Studies</li>
-            <li>Corporate Communication Strategy</li>
-          </ul>
+          <p>Optimizing media presence and internal workflows through strategic guidance.</p>
+          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
       </div>
 
       <!-- Professional Elite Talent -->
-      <div class="service-card">
+      <div class="service-card" onclick="openModal('modal-04')">
         <div class="service-card-img">
           <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=700&q=80" alt="Professional Elite Talent" />
           <div class="service-card-img-overlay"></div>
@@ -645,14 +783,8 @@
         <div class="service-card-body">
           <div class="service-num">04</div>
           <h2>Professional Elite<br>Talent</h2>
-          <p>We maintain an elite roster of technical and creative professionals available for short-term projects or long-term placements.</p>
-          <ul>
-            <li>Photographers</li>
-            <li>Filmmakers</li>
-            <li>Camera Operators</li>
-            <li>Sound Technicians</li>
-            <li>Video Editors</li>
-          </ul>
+          <p>An elite roster of technical and creative professionals for any project scale.</p>
+          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
       </div>
 
@@ -701,6 +833,114 @@
     const nav = document.getElementById('nav');
     hamburger.addEventListener('click', () => nav.classList.toggle('open'));
     nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  </script>
+
+  <!-- ── MODALS ── -->
+  <div class="modal-backdrop" id="modal-01" onclick="closeOnBackdrop(event, 'modal-01')">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-01')" aria-label="Close">&#x2715;</button>
+      <div class="modal-img">
+        <img src="media/IMG20221211180229.jpg" alt="Broadcast & Live Transmission" />
+        <div class="modal-img-overlay"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-num">01</div>
+        <h2 class="modal-title">Broadcast &amp; Live Transmission</h2>
+        <p class="modal-desc">From live events to digital streaming, we manage the technical complexities of real-time transmission — ensuring your message reaches audiences seamlessly, wherever they are.</p>
+        <ul class="modal-list">
+          <li>Hybrid Meetings</li>
+          <li>Live Streaming</li>
+          <li>Virtual Events</li>
+          <li>Video Conferencing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-02" onclick="closeOnBackdrop(event, 'modal-02')">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-02')" aria-label="Close">&#x2715;</button>
+      <div class="modal-img">
+        <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?w=700&q=80" alt="Technical Infrastructure" />
+        <div class="modal-img-overlay"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-num">02</div>
+        <h2 class="modal-title">Technical Infrastructure &amp; Asset Management</h2>
+        <p class="modal-desc">We provide access to industry-standard technology, ensuring creators and organizations have the tools they need without the overhead of ownership. From procurement to on-site deployment, we handle it all.</p>
+        <ul class="modal-list">
+          <li>Cinema &amp; Broadcast Cameras</li>
+          <li>Grip &amp; Lighting</li>
+          <li>Audio Solutions</li>
+          <li>Procurement &amp; Specialized Media Hardware</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-03" onclick="closeOnBackdrop(event, 'modal-03')">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-03')" aria-label="Close">&#x2715;</button>
+      <div class="modal-img">
+        <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=700&q=80" alt="Strategic Consultancy" />
+        <div class="modal-img-overlay"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-num">03</div>
+        <h2 class="modal-title">Strategic Consultancy &amp; System Integration</h2>
+        <p class="modal-desc">We offer strategic guidance to help organizations optimize their media presence and internal workflows. Our consultants bridge the gap between creative vision and technical execution.</p>
+        <ul class="modal-list">
+          <li>Media Workflow Optimization</li>
+          <li>Digital Transformation for Corporate Communication</li>
+          <li>Technical Feasibility Studies</li>
+          <li>Corporate Communication Strategy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-04" onclick="closeOnBackdrop(event, 'modal-04')">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('modal-04')" aria-label="Close">&#x2715;</button>
+      <div class="modal-img">
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=700&q=80" alt="Professional Elite Talent" />
+        <div class="modal-img-overlay"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-num">04</div>
+        <h2 class="modal-title">Professional Elite Talent</h2>
+        <p class="modal-desc">We maintain an elite roster of technical and creative professionals available for short-term projects or long-term placements — vetted, skilled, and ready to deliver at the highest level.</p>
+        <ul class="modal-list">
+          <li>Photographers</li>
+          <li>Filmmakers</li>
+          <li>Camera Operators</li>
+          <li>Sound Technicians</li>
+          <li>Video Editors</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeOnBackdrop(e, id) {
+      if (e.target === document.getElementById(id)) closeModal(id);
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-backdrop.open').forEach(m => {
+          m.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      }
+    });
   </script>
 </body>
 </html>

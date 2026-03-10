@@ -30,7 +30,6 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      background: var(--nav-bg);
       backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
@@ -253,6 +252,11 @@
       object-fit: contain;
     }
 
+    a.logo-card {
+      text-decoration: none;
+      cursor: pointer;
+    }
+
     /* Colour accent variants */
     .logo-card.accent-red   { border-color: #c0392b22; color: #c0392b; }
     .logo-card.accent-orange{ border-color: #e67e2222; color: #e67e22; }
@@ -440,7 +444,6 @@
       <ul>
         <li><a href="about.html">About Us</a></li>
         <li><a href="services.html">Our Services</a></li>
-        <li><a href=".html"></a></li>
         <li><a href="clients.html" class="active">Our Clients</a></li>
         <li><a href="leadteam.html">Lead Team</a></li>
         <li><a href="contact.html">Contact Us</a></li>
@@ -467,13 +470,12 @@
         We provide expert media support for corporates, associations, and parastatals in collaboration with event organizers or through direct sourcing. Discover tailored solutions for your unique needs and challenges — learn more about our diverse client .
       </p>
       <div class="intro-feature-logos">
-        <div class="logo-card accent-indigo" style="width:160px; min-height:90px;">
-          NuLook Links LLP
-          <span class="sub">Event Organizers</span>
-        </div>
-        <div class="logo-card accent-purple" style="width:160px; min-height:90px;">
-          Kenya Conference Solutions
-        </div>
+        <a href="https://nulooklinks.co.ke" target="_blank" rel="noopener" class="logo-card accent-indigo" style="width:160px; min-height:90px;">
+          <img src="images/nulook.jpeg" alt="NuLook Links LLP – Event Organizers" />
+        </a>
+        <a href="https://kenyaconferencesolutions.com" target="_blank" rel="noopener" class="logo-card accent-purple" style="width:160px; min-height:90px;">
+          <img src="images/kcs.jpeg" alt="Kenya Conference Solutions" />
+        </a>
       </div>
     </div>
 
@@ -481,47 +483,44 @@
 
     <!-- Row 1: 4 clients -->
     <div class="logo-grid cols-4">
-      <div class="logo-card accent-red">
-        Kenya Association of Hotel Keepers &amp; Caterers
-      </div>
-      <div class="logo-card accent-orange" style="font-style:italic;">
-        brightermonday Kenya
-      </div>
-      <div class="logo-card accent-navy">
-        Mitchell &amp; Cotts
-        <span class="sub">The home of logistics solutions</span>
-      </div>
-      <div class="logo-card accent-blue">
-        Africa Tech Summit
-      </div>
+      <a href="https://www.kahc.co.ke/" target="_blank" rel="noopener" class="logo-card accent-red">
+        <img src="images/kahc-logo.png" alt="Kenya Association of Hotel Keepers &amp; Caterers" />
+      </a>
+      <a href="https://www.brightermonday.co.ke/" target="_blank" rel="noopener" class="logo-card accent-orange">
+        <img src="images/brightermonday.svg" alt="BrighterMonday Kenya" />
+      </a>
+      <a href="https://www.mitchellcottsgroup.com/" target="_blank" rel="noopener" class="logo-card accent-navy">
+        <img src="images/mitch.webp" alt="Mitchell &amp; Cotts" />
+      </a>
+      <a href="https://www.africatechsummit.com/" target="_blank" rel="noopener" class="logo-card accent-blue">
+        <img src="images/ATS.webp" alt="Africa Tech Summit" />
+      </a>
     </div>
 
     <!-- Row 2: 5 clients -->
     <div class="logo-grid">
-      <div class="logo-card accent-brown big-text">
-        AHF
-        <span class="sub">Kenya</span>
-      </div>
-      <div class="logo-card accent-pr">
-        Public Relations Society of Kenya
-      </div>
-      <div class="logo-card accent-scarlet">
-        Sarova Whitesands
-        <span class="sub">Beach Resort &amp; Spa, Mombasa</span>
-      </div>
-      <div class="logo-card accent-dark">
-        NIVBEN LTD
-      </div>
-      <div class="logo-card accent-teal big-text">
-        411
-      </div>
+      <a href="https://www.aidshealth.org" target="_blank" rel="noopener" class="logo-card accent-brown big-text">
+        <img src="images/ahf.webp" alt="AHF Kenya" />
+      </a>
+      <a href="https://prsk.co.ke/" target="_blank" rel="noopener" class="logo-card accent-pr">
+        <img src="images/prsk.svg" alt="Public Relations Society of Kenya" />
+      </a>
+      <a href="https://www.sarovahotels.com/" target="_blank" rel="noopener" class="logo-card accent-scarlet">
+        <img src="images/sarova2.jpeg" alt="Sarova Whitesands Beach Resort &amp; Spa, Mombasa" />
+      </a>
+      <a href="https://www.nivben.co.ke/" target="_blank" rel="noopener" class="logo-card accent-dark">
+        <img src="images/nivben.webp" alt="NIVBEN LTD" />
+      </a>
+      <a href="https://www.real411.org/" target="_blank" rel="noopener" class="logo-card accent-teal big-text">
+        <img src="images/411.png" alt="411" />
+      </a>
     </div>
 
     <!-- Row 3: 1 client -->
     <div class="logo-grid cols-2">
-      <div class="logo-card accent-gold">
-        Insurance Institute of Kenya
-      </div>
+      <a href="https://iik.or.ke/" target="_blank" rel="noopener" class="logo-card accent-gold">
+        <img src="images/iikimg.png" alt="Insurance Institute of Kenya" />
+      </a>
     </div>
 
   </section>
