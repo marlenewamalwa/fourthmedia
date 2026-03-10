@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home | 4ML livestreaming & content production for conferences in Mombasa & Nairobi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --grad-start: #5B6CF5;
+      --grad-mid:   #9B3FD4;
+      --grad-end:   #F0408A;
+      --gradient: linear-gradient(135deg, #5B6CF5 0%, #9B3FD4 50%, #F0408A 100%);
+      --gradient-hover: linear-gradient(135deg, #F0408A 0%, #9B3FD4 50%, #5B6CF5 100%);
+      --dark: #111111;
+      --white: #ffffff;
+      --light-gray: #f5f5f5;
+      --nav-bg: rgba(10,10,10,0.85);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark);
+      background: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+  
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      border-bottom: 1px solid rgba(155,63,212,0.3);
+      transition: background 0.3s;
+    }
+
+    .topbar.scrolled { background: rgba(5,5,5,0.97); }
+
+    .logo img {
+      height: 60px;
+      object-fit: contain;
+      display: block;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s;
+    }
+
+    nav ul li a:hover {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    nav ul li a:hover::after { width: 100%; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://static.wixstatic.com/media/84770f_6b54c02021f64aa38d05264a9afc3f80.jpg/v1/fill/w_1920,h_1080,al_c,q_90,enc_avif,quality_auto/84770f_6b54c02021f64aa38d05264a9afc3f80.jpg');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      animation: zoomOut 8s ease forwards;
+    }
+
+    @keyframes zoomOut {
+      from { transform: scale(1.1); }
+      to   { transform: scale(1.0); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(0,0,0,0.75) 0%, rgba(20,10,40,0.55) 60%, rgba(0,0,0,0.65) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px 30px;
+      max-width: 860px;
+      animation: fadeUp 1s ease 0.4s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      opacity: 0.9;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(32px, 5.5vw, 68px);
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
+
+    .hero h1 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero h2 {
+      font-family: 'Open Sans', sans-serif;
+      font-size: clamp(15px, 2vw, 20px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.6;
+      margin-bottom: 42px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 16px 46px;
+      background: var(--gradient);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      position: relative;
+      z-index: 0;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 6px 30px rgba(155,63,212,0.45);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-hover);
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: -1;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(240,64,138,0.45);
+    }
+
+    .btn-primary:hover::before { opacity: 1; }
+
+    /* ─── SECTION WRAPPER ─── */
+    section { width: 100%; }
+
+    /* ─── SERVICES INTRO ─── */
+    .services-intro {
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .services-image-wrap {
+      width: 100%;
+      max-height: 520px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .services-image-wrap img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .services-image-wrap:hover img { transform: scale(1.03); }
+
+    .services-label {
+      position: absolute;
+      top: 30px; left: 40px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.35em;
+      color: var(--white);
+      text-transform: uppercase;
+      background: var(--gradient);
+      padding: 8px 18px;
+    }
+
+    /* ─── STATS ─── */
+    .stats {
+      background: var(--dark);
+      padding: 80px 40px;
+    }
+
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .stats-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .stats-title h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stats-title h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(155,63,212,0.2);
+      padding: 50px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.35s, border-color 0.35s;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+      transform-origin: left;
+    }
+
+    .stat-card:hover { background: rgba(155,63,212,0.08); border-color: rgba(155,63,212,0.45); }
+    .stat-card:hover::before { transform: scaleX(1); }
+
+    .stat-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(42px, 5vw, 72px);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 12px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.65);
+      text-transform: uppercase;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #0a0a0a;
+      border-top: 1px solid rgba(155,63,212,0.25);
+      padding: 50px 40px 30px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .footer-social-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+    }
+
+    .footer-social-label span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px; height: 42px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-icon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .social-icon:hover::before { opacity: 0.2; }
+    .social-icon:hover {
+      border-color: #9B3FD4;
+      transform: translateY(-3px);
+    }
+
+    .social-icon img {
+      width: 20px; height: 20px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+
+    .footer-copy a {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+    .footer-copy a:hover { text-decoration: underline; }
+
+    /* ─── MOBILE NAV ─── */
+    @media (max-width: 900px) {
+      .topbar { padding: 12px 20px; }
+
+      .hamburger { display: flex; }
+
+      nav {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 260px; height: 100vh;
+        background: rgba(5,5,5,0.97);
+        border-left: 1px solid rgba(155,63,212,0.25);
+        transition: right 0.35s ease;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 90px;
+        z-index: 999;
+      }
+
+      nav.open { right: 0; }
+
+      nav ul { flex-direction: column; gap: 0; width: 100%; }
+
+      nav ul li a {
+        display: block;
+        padding: 16px 30px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 14px;
+      }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .hero h1 { font-size: 32px; }
+    }
+
+    @media (max-width: 520px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-card { padding: 36px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP BAR ── -->
+  <header class="topbar" id="topbar">
+    <a class="logo" href="#">
+      <img
+        src="https://static.wixstatic.com/media/9c039d_a5d02242728c4a68bd9b38f7615494df~mv2.png/v1/fill/w_205,h_89,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Copy%20of%20Top%2010%20Must-See%20Sights%20in%20(1).png"
+        alt="4ML Logo"
+      />
+    </a>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="nav">
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Our Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="clients.html">Our Clients</a></li>
+        <li><a href="leadteam.html">Lead Team</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Fourth Media Logistics</p>
+      <h1>Welcome to <span>Fourth</span><br>Media Logistics</h1>
+      <h2>Are you looking for a specialized multimedia service provider delivering end-to-end technical infrastructure and elite creative talent?</h2>
+      <a href="contact.html" class="btn-primary">Get Started Now</a>
+    </div>
+   
+  </section>
+
+  <!-- ── SERVICES IMAGE ── -->
+  <section class="services-intro" id="services">
+    <div class="services-image-wrap">
+      <img
+        src="https://static.wixstatic.com/media/11062b_1c4e5d8f0ce241bda76c8c3c17fe0576~mv2.jpg/v1/fill/w_866,h_577,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_1c4e5d8f0ce241bda76c8c3c17fe0576~mv2.jpg"
+        alt="Video Convention"
+      />
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <section class="stats" id="about">
+    <div class="stats-inner">
+      <div class="stats-title">
+        <h3>Fun Facts</h3>
+        <h2>Our Numbers Speak</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" data-target="15">0</div>
+          <div class="stat-label">Years of Service</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="30">0</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="100">0</div>
+          <div class="stat-label">Social Campaigns</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="800">0</div>
+          <div class="stat-label">Digital Content</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <p class="footer-social-label">Be a <span>SociaLight</span> and Follow Us:</p>
+      <div class="social-icons">
+        <a class="social-icon" href="https://www.facebook.com/4MLkeyna?mibextid=ZbWKwL" target="_blank" rel="noopener" aria-label="Facebook">
+          <img src="https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/23fd2a2be53141ed810f4d3dcdcd01fa.png" alt="Facebook"/>
+        </a>
+        <a class="social-icon" href="https://instagram.com/4mlive?igshid=NGVhN2U2NjQ0Yg%3D%3D" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="https://static.wixstatic.com/media/81af6121f84c41a5b4391d7d37fce12a.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/81af6121f84c41a5b4391d7d37fce12a.png" alt="Instagram"/>
+        </a>
+        <a class="social-icon" href="https://youtube.com/@4mlive007?si=B7FHr9kaRrC9JVcr" target="_blank" rel="noopener" aria-label="YouTube">
+          <img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"/>
+        </a>
+      </div>
+      <p class="footer-copy">
+        &copy; 2024 4ML &nbsp;|&nbsp; Powered and secured by
+        <a href="https://wix.com" target="_blank" rel="noopener">Latitude</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Scrolled class on topbar
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => {
+      topbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+    // Counter animation
+    const counters = document.querySelectorAll('.stat-number');
+    const observed = new Set();
+
+    const animateCounter = (el) => {
+      const target = +el.dataset.target;
+      const suffix = '+';
+      const duration = 1800;
+      const step = target / (duration / 16);
+      let current = 0;
+      const tick = () => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.floor(current) + suffix;
+        if (current < target) requestAnimationFrame(tick);
+      };
+      tick();
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !observed.has(entry.target)) {
+          observed.add(entry.target);
+          animateCounter(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    counters.forEach(c => observer.observe(c));
+  </script>
+</body>
+</html>
