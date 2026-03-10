@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | 4ML – Fourth Media Logistics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --grad-start: #5B6CF5;
+      --grad-mid:   #9B3FD4;
+      --grad-end:   #F0408A;
+      --gradient: linear-gradient(135deg, #5B6CF5 0%, #9B3FD4 50%, #F0408A 100%);
+      --gradient-hover: linear-gradient(135deg, #F0408A 0%, #9B3FD4 50%, #5B6CF5 100%);
+      --dark: #111111;
+      --white: #ffffff;
+      --light-gray: #f5f5f5;
+      --nav-bg: rgba(10,10,10,0.85);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark);
+      background: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      border-bottom: 1px solid rgba(155,63,212,0.3);
+      transition: background 0.3s;
+    }
+
+    .topbar.scrolled { background: rgba(5,5,5,0.97); }
+
+    .logo img {
+      height: 60px;
+      object-fit: contain;
+      display: block;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul li a.active::after,
+    nav ul li a:hover::after { width: 100%; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+
+    /* ─── PAGE HERO (WHO WE ARE) ─── */
+    .page-hero {
+      position: relative;
+      width: 100%;
+      min-height: 520px;
+      display: flex;
+      align-items: flex-end;
+      padding: 120px 80px 70px;
+      overflow: hidden;
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://static.wixstatic.com/media/84770f_6b54c02021f64aa38d05264a9afc3f80.jpg/v1/fill/w_1920,h_1080,al_c,q_90,enc_avif,quality_auto/84770f_6b54c02021f64aa38d05264a9afc3f80.jpg');
+      background-size: cover;
+      background-position: center 30%;
+    }
+
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(17,17,17,0.85) 0%, rgba(30,15,55,0.75) 50%, rgba(17,17,17,0.9) 100%);
+    }
+
+    /* Gradient accent line */
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%; height: 3px;
+      background: var(--gradient);
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      animation: fadeUp 0.9s ease 0.2s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(48px, 8vw, 100px);
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+      margin-bottom: 28px;
+      text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+    }
+
+    .page-hero p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: clamp(14px, 1.6vw, 17px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.8;
+      max-width: 680px;
+    }
+
+    /* ─── WHAT WE DO ─── */
+    .what-we-do {
+      background: var(--white);
+      padding: 90px 80px;
+    }
+
+    .section-header {
+      margin-bottom: 60px;
+    }
+
+    .gradient-rule {
+      width: 52px;
+      height: 4px;
+      background: var(--gradient);
+      margin-bottom: 22px;
+      border-radius: 2px;
+    }
+
+    .section-header h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 900;
+      color: #1a1a2e;
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .service-card {
+      padding: 40px 32px 40px 0;
+      border-right: 1px solid #e8e8e8;
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .service-card:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .service-card:first-child {
+      padding-left: 0;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 3px;
+      background: var(--gradient);
+      transition: width 0.4s ease;
+    }
+
+    .service-card:hover::before { width: 100%; }
+
+    .service-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: rgba(155,63,212,0.5);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .service-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a2e;
+      line-height: 1.45;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .service-card p {
+      font-size: 13.5px;
+      color: #666;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .read-more {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .read-more::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gradient);
+      transition: width 0.3s;
+    }
+
+    .read-more:hover::after { width: 100%; }
+
+    /* ─── VALUES STRIP ─── */
+    .values-strip {
+      background: var(--dark);
+      padding: 80px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .values-strip::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient);
+    }
+
+    .values-strip .section-header h2 {
+      color: var(--white);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .value-item {
+      border-left: 2px solid rgba(155,63,212,0.3);
+      padding-left: 24px;
+      transition: border-color 0.3s;
+    }
+
+    .value-item:hover {
+      border-color: #F0408A;
+    }
+
+    .value-item h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .value-item p {
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #0a0a0a;
+      border-top: 1px solid rgba(155,63,212,0.2);
+      padding: 50px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .footer-social-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+    }
+
+    .footer-social-label span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px; height: 42px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-icon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .social-icon:hover::before { opacity: 0.2; }
+    .social-icon:hover {
+      border-color: #9B3FD4;
+      transform: translateY(-3px);
+    }
+
+    .social-icon img {
+      width: 20px; height: 20px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+
+    .footer-copy a {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      .what-we-do,
+      .values-strip { padding: 70px 50px; }
+
+      .page-hero { padding: 110px 50px 60px; }
+
+      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 0; }
+
+      .service-card {
+        border-bottom: 1px solid #e8e8e8;
+        padding: 36px 28px;
+      }
+
+      .service-card:nth-child(2n) { border-right: none; }
+      .service-card:nth-child(3),
+      .service-card:nth-child(4) { border-bottom: none; }
+    }
+
+    @media (max-width: 900px) {
+      .topbar { padding: 12px 20px; }
+      .hamburger { display: flex; }
+
+      nav {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 260px; height: 100vh;
+        background: rgba(5,5,5,0.97);
+        border-left: 1px solid rgba(155,63,212,0.25);
+        transition: right 0.35s ease;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 90px;
+        z-index: 999;
+      }
+
+      nav.open { right: 0; }
+
+      nav ul { flex-direction: column; gap: 0; width: 100%; }
+
+      nav ul li a {
+        display: block;
+        padding: 16px 30px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 14px;
+      }
+
+      .values-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+
+      .page-hero { padding: 100px 30px 50px; min-height: 420px; }
+    }
+
+    @media (max-width: 640px) {
+      .what-we-do,
+      .values-strip { padding: 50px 24px; }
+
+      .page-hero { padding: 90px 24px 44px; }
+
+      .services-grid { grid-template-columns: 1fr; }
+
+      .service-card {
+        border-right: none;
+        border-bottom: 1px solid #e8e8e8;
+        padding: 30px 0;
+      }
+      .service-card:last-child { border-bottom: none; }
+
+      .values-grid { grid-template-columns: 1fr; gap: 24px; }
+
+      .section-header h2 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP BAR ── -->
+  <header class="topbar" id="topbar">
+    <a class="logo" href="index.html">
+      <img
+        src="https://static.wixstatic.com/media/9c039d_a5d02242728c4a68bd9b38f7615494df~mv2.png/v1/fill/w_205,h_89,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Copy%20of%20Top%2010%20Must-See%20Sights%20in%20(1).png"
+        alt="4ML Logo"
+      />
+    </a>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="nav">
+      <ul>
+        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="services.html">Our Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="clients.html">Our Clients</a></li>
+        <li><a href="leadteam.html">Lead Team</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── PAGE HERO: WHO WE ARE ── -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <p class="page-eyebrow">Fourth Media Logistics</p>
+      <h1>Who<br>We Are</h1>
+      <p>At Fourth Media Logistics, we specialize in delivering comprehensive media solutions for corporate entities, NGOs, and event planners — managing the logistical complexities of modern media production and broadcasting. Our expertise spans content production, broadcast services, media consultancy, and strategic communication, all designed to enhance your reputation and influence in the market.</p>
+    </div>
+  </section>
+
+  <!-- ── WHAT WE DO ── -->
+  <section class="what-we-do">
+    <div class="section-header">
+      <div class="gradient-rule"></div>
+      <h2>What We Do</h2>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Broadcast &amp; Live<br>Transmission</h3>
+        <p>Multi-camera live streaming and OB (Outside Broadcast) solutions for events of every scale, delivering flawless real-time coverage to audiences worldwide.</p>
+        <a href="services.html" class="read-more">Read More →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Professional Talent<br>Outsourcing</h3>
+        <p>Vetted professionals including cinematographers, directors, sound engineers, and on-camera talent matched precisely to your production requirements.</p>
+        <a href="services.html" class="read-more">Read More →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Strategic Consultancy<br>&amp; System Integration</h3>
+        <p>Media workflow optimization and studio infrastructure design — guiding organizations to build resilient, scalable media ecosystems.</p>
+        <a href="services.html" class="read-more">Read More →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Technical Infrastructure &amp; Asset Management</h3>
+        <p>High-end cinema and broadcast equipment rental, asset tracking, and on-site technical support to keep your production running seamlessly.</p>
+        <a href="services.html" class="read-more">Read More →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── VALUES ── -->
+  <section class="values-strip">
+    <div class="section-header">
+      <div class="gradient-rule"></div>
+      <h2>Our Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-item">
+        <h4>Excellence</h4>
+        <p>We hold every deliverable to the highest professional standard, ensuring quality that speaks for itself across every platform and project.</p>
+      </div>
+      <div class="value-item">
+        <h4>Innovation</h4>
+        <p>Staying ahead of the curve in technology and technique, we bring fresh solutions to the ever-evolving media landscape.</p>
+      </div>
+      <div class="value-item">
+        <h4>Integrity</h4>
+        <p>Honest partnerships, transparent processes, and a commitment to our clients' success in every engagement we undertake.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-social-label">Be a <span>SociaLight</span> and Follow Us:</p>
+      <div class="social-icons">
+        <a class="social-icon" href="https://www.facebook.com/4MLkeyna?mibextid=ZbWKwL" target="_blank" rel="noopener" aria-label="Facebook">
+          <img src="https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/23fd2a2be53141ed810f4d3dcdcd01fa.png" alt="Facebook"/>
+        </a>
+        <a class="social-icon" href="https://instagram.com/4mlive?igshid=NGVhN2U2NjQ0Yg%3D%3D" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="https://static.wixstatic.com/media/81af6121f84c41a5b4391d7d37fce12a.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/81af6121f84c41a5b4391d7d37fce12a.png" alt="Instagram"/>
+        </a>
+        <a class="social-icon" href="https://youtube.com/@4mlive007?si=B7FHr9kaRrC9JVcr" target="_blank" rel="noopener" aria-label="YouTube">
+          <img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"/>
+        </a>
+      </div>
+      <p class="footer-copy">
+        &copy; 2024 4ML &nbsp;|&nbsp; Powered and secured by
+        <a href="#" target="_blank" rel="noopener">Latitude</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Scrolled topbar
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => {
+      topbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  </script>
+</body>
+</html>
