@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Clients | 4ML – Fourth Media Logistics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gradient: linear-gradient(135deg, #5B6CF5 0%, #9B3FD4 50%, #F0408A 100%);
+      --gradient-hover: linear-gradient(135deg, #F0408A 0%, #9B3FD4 50%, #5B6CF5 100%);
+      --dark: #111111;
+      --white: #ffffff;
+      --nav-bg: rgba(10,10,10,0.85);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark);
+      background: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      border-bottom: 1px solid rgba(155,63,212,0.3);
+      transition: background 0.3s;
+    }
+
+    .topbar.scrolled { background: rgba(5,5,5,0.97); }
+
+    .logo img { height: 60px; object-fit: contain; display: block; }
+
+    nav ul { list-style: none; display: flex; gap: 28px; align-items: center; }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul li a.active::after,
+    nav ul li a:hover::after { width: 100%; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero {
+      position: relative;
+      width: 100%;
+      min-height: 460px;
+      display: flex;
+      align-items: flex-end;
+      padding: 120px 80px 64px;
+      overflow: hidden;
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://static.wixstatic.com/media/84770f_6b54c02021f64aa38d05264a9afc3f80.jpg/v1/fill/w_1920,h_1080,al_c,q_90,enc_avif,quality_auto/84770f_6b54c02021f64aa38d05264a9afc3f80.jpg');
+      background-size: cover;
+      background-position: center 40%;
+    }
+
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(17,17,17,0.88) 0%, rgba(30,15,55,0.72) 50%, rgba(17,17,17,0.92) 100%);
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%; height: 3px;
+      background: var(--gradient);
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.9s ease 0.2s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(52px, 9vw, 110px);
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 0.92;
+      text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+    }
+
+    /* ─── CLIENTS SECTION ─── */
+    .clients-section {
+      background: var(--white);
+      padding: 80px 80px 100px;
+    }
+
+    .gradient-rule {
+      width: 52px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+      margin-bottom: 22px;
+    }
+
+    .intro-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 50px;
+      margin-bottom: 70px;
+    }
+
+    .intro-text {
+      flex: 1;
+      max-width: 500px;
+      font-size: 15px;
+      line-height: 1.85;
+      color: #555;
+    }
+
+    .intro-feature-logos {
+      display: flex;
+      gap: 20px;
+      flex-shrink: 0;
+      align-items: center;
+    }
+
+    /* ─── CLIENT LOGO GRID ─── */
+    .clients-grid-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(155,63,212,0.6);
+      margin-bottom: 28px;
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .logo-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .logo-grid.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 480px; }
+
+    .logo-card {
+      border: 1px solid #e8e8e8;
+      border-radius: 6px;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 14px;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      color: #444;
+      text-transform: uppercase;
+      background: #fafafa;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 3px;
+      background: var(--gradient);
+      transition: width 0.4s ease;
+    }
+
+    .logo-card:hover {
+      border-color: rgba(155,63,212,0.3);
+      box-shadow: 0 6px 28px rgba(155,63,212,0.1);
+      transform: translateY(-3px);
+    }
+
+    .logo-card:hover::before { width: 100%; }
+
+    .logo-card img {
+      max-width: 100%;
+      max-height: 70px;
+      object-fit: contain;
+    }
+
+    /* Colour accent variants */
+    .logo-card.accent-red   { border-color: #c0392b22; color: #c0392b; }
+    .logo-card.accent-orange{ border-color: #e67e2222; color: #e67e22; }
+    .logo-card.accent-navy  { border-color: #1a527622; color: #1a5276; }
+    .logo-card.accent-blue  { border-color: #2e86c122; color: #2e86c1; }
+    .logo-card.accent-brown { background: #6e2a0a; color: #fff; border-color: #6e2a0a; }
+    .logo-card.accent-pr    { border-color: #2471a322; color: #2471a3; }
+    .logo-card.accent-scarlet{ background: #922b21; color: #fff; border-color: #922b21; }
+    .logo-card.accent-dark  { border-color: #2c3e5022; color: #2c3e50; }
+    .logo-card.accent-teal  { border-color: #1abc9c22; color: #117a65; }
+    .logo-card.accent-gold  { border-color: #7d660822; color: #7d6608; }
+    .logo-card.accent-indigo{ border-color: #1a6b9e22; color: #1a6b9e; }
+    .logo-card.accent-purple{ border-color: #8e44ad22; color: #8e44ad; }
+
+    .logo-card .sub {
+      display: block;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: none;
+      margin-top: 4px;
+      opacity: 0.75;
+    }
+
+    .logo-card.big-text { font-size: 22px; font-weight: 900; letter-spacing: 1px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #0a0a0a;
+      border-top: 1px solid rgba(155,63,212,0.2);
+      padding: 50px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .footer-social-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+    }
+
+    .footer-social-label span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .social-icons { display: flex; gap: 18px; align-items: center; }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px; height: 42px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      transition: border-color 0.3s, transform 0.3s;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-icon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .social-icon:hover::before { opacity: 0.2; }
+    .social-icon:hover { border-color: #9B3FD4; transform: translateY(-3px); }
+
+    .social-icon img {
+      width: 20px; height: 20px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+
+    .footer-copy a {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      .clients-section { padding: 70px 50px 80px; }
+      .page-hero { padding: 110px 50px 60px; }
+      .logo-grid { grid-template-columns: repeat(4, 1fr); }
+      .logo-grid.cols-4 { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .topbar { padding: 12px 20px; }
+      .hamburger { display: flex; }
+
+      nav {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 260px; height: 100vh;
+        background: rgba(5,5,5,0.97);
+        border-left: 1px solid rgba(155,63,212,0.25);
+        transition: right 0.35s ease;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 90px;
+        z-index: 999;
+      }
+
+      nav.open { right: 0; }
+      nav ul { flex-direction: column; gap: 0; width: 100%; }
+
+      nav ul li a {
+        display: block;
+        padding: 16px 30px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 14px;
+      }
+
+      .intro-row { flex-direction: column; gap: 30px; }
+      .intro-feature-logos { width: 100%; justify-content: flex-start; }
+
+      .logo-grid { grid-template-columns: repeat(3, 1fr); }
+      .logo-grid.cols-4 { grid-template-columns: repeat(3, 1fr); }
+      .logo-grid.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+    }
+
+    @media (max-width: 640px) {
+      .clients-section { padding: 50px 24px 60px; }
+      .page-hero { padding: 90px 24px 44px; min-height: 360px; }
+
+      .logo-grid,
+      .logo-grid.cols-4,
+      .logo-grid.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+
+      .intro-feature-logos { flex-wrap: wrap; }
+    }
+
+    @media (max-width: 400px) {
+      .logo-grid,
+      .logo-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP BAR ── -->
+  <header class="topbar" id="topbar">
+    <a class="logo" href="index.html">
+      <img
+        src="https://static.wixstatic.com/media/9c039d_a5d02242728c4a68bd9b38f7615494df~mv2.png/v1/fill/w_205,h_89,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Copy%20of%20Top%2010%20Must-See%20Sights%20in%20(1).png"
+        alt="4ML Logo"
+      />
+    </a>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="nav">
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Our Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="clients.html" class="active">Our Clients</a></li>
+        <li><a href="leadteam.html">Lead Team</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── PAGE HERO ── -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <p class="page-eyebrow">Fourth Media Logistics</p>
+      <h1>Our<br>Clients</h1>
+    </div>
+  </section>
+
+  <!-- ── CLIENTS CONTENT ── -->
+  <section class="clients-section">
+    <div class="gradient-rule"></div>
+
+    <div class="intro-row">
+      <p class="intro-text">
+        We provide expert media support for corporates, associations, and parastatals in collaboration with event organizers or through direct sourcing. Discover tailored solutions for your unique needs and challenges — learn more about our diverse client portfolio.
+      </p>
+      <div class="intro-feature-logos">
+        <div class="logo-card accent-indigo" style="width:160px; min-height:90px;">
+          NuLook Links LLP
+          <span class="sub">Event Organizers</span>
+        </div>
+        <div class="logo-card accent-purple" style="width:160px; min-height:90px;">
+          Kenya Conference Solutions
+        </div>
+      </div>
+    </div>
+
+    <p class="clients-grid-label">Trusted by leading organizations</p>
+
+    <!-- Row 1: 4 clients -->
+    <div class="logo-grid cols-4">
+      <div class="logo-card accent-red">
+        Kenya Association of Hotel Keepers &amp; Caterers
+      </div>
+      <div class="logo-card accent-orange" style="font-style:italic;">
+        brightermonday Kenya
+      </div>
+      <div class="logo-card accent-navy">
+        Mitchell &amp; Cotts
+        <span class="sub">The home of logistics solutions</span>
+      </div>
+      <div class="logo-card accent-blue">
+        Africa Tech Summit
+      </div>
+    </div>
+
+    <!-- Row 2: 5 clients -->
+    <div class="logo-grid">
+      <div class="logo-card accent-brown big-text">
+        AHF
+        <span class="sub">Kenya</span>
+      </div>
+      <div class="logo-card accent-pr">
+        Public Relations Society of Kenya
+      </div>
+      <div class="logo-card accent-scarlet">
+        Sarova Whitesands
+        <span class="sub">Beach Resort &amp; Spa, Mombasa</span>
+      </div>
+      <div class="logo-card accent-dark">
+        NIVBEN LTD
+      </div>
+      <div class="logo-card accent-teal big-text">
+        411
+      </div>
+    </div>
+
+    <!-- Row 3: 1 client -->
+    <div class="logo-grid cols-2">
+      <div class="logo-card accent-gold">
+        Insurance Institute of Kenya
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-social-label">Be a <span>SociaLight</span> and Follow Us:</p>
+      <div class="social-icons">
+        <a class="social-icon" href="https://www.facebook.com/4MLkeyna?mibextid=ZbWKwL" target="_blank" rel="noopener" aria-label="Facebook">
+          <img src="https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/23fd2a2be53141ed810f4d3dcdcd01fa.png" alt="Facebook"/>
+        </a>
+        <a class="social-icon" href="https://instagram.com/4mlive?igshid=NGVhN2U2NjQ0Yg%3D%3D" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="https://static.wixstatic.com/media/81af6121f84c41a5b4391d7d37fce12a.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/81af6121f84c41a5b4391d7d37fce12a.png" alt="Instagram"/>
+        </a>
+        <a class="social-icon" href="https://youtube.com/@4mlive007?si=B7FHr9kaRrC9JVcr" target="_blank" rel="noopener" aria-label="YouTube">
+          <img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"/>
+        </a>
+      </div>
+      <p class="footer-copy">
+        &copy; 2024 4ML &nbsp;|&nbsp; Powered and secured by
+        <a href="#" target="_blank" rel="noopener">Latitude</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => {
+      topbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+  </script>
+</body>
+</html>
