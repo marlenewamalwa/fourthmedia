@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | 4ML – Fourth Media Logistics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gradient: linear-gradient(135deg, #5B6CF5 0%, #9B3FD4 50%, #F0408A 100%);
+      --gradient-hover: linear-gradient(135deg, #F0408A 0%, #9B3FD4 50%, #5B6CF5 100%);
+      --dark: #111111;
+      --white: #ffffff;
+      --nav-bg: rgba(10,10,10,0.85);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark);
+      background: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      border-bottom: 1px solid rgba(155,63,212,0.3);
+      transition: background 0.3s;
+    }
+
+    .topbar.scrolled { background: rgba(5,5,5,0.97); }
+
+    .logo img { height: 60px; object-fit: contain; display: block; }
+
+    nav ul { list-style: none; display: flex; gap: 28px; align-items: center; }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul li a.active::after,
+    nav ul li a:hover::after { width: 100%; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero {
+      position: relative;
+      width: 100%;
+      min-height: 420px;
+      display: flex;
+      align-items: flex-end;
+      padding: 120px 80px 60px;
+      overflow: hidden;
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://static.wixstatic.com/media/84770f_6b54c02021f64aa38d05264a9afc3f80.jpg/v1/fill/w_1920,h_1080,al_c,q_90,enc_avif,quality_auto/84770f_6b54c02021f64aa38d05264a9afc3f80.jpg');
+      background-size: cover;
+      background-position: center 40%;
+    }
+
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(17,17,17,0.88) 0%, rgba(30,15,55,0.72) 50%, rgba(17,17,17,0.92) 100%);
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%; height: 3px;
+      background: var(--gradient);
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.9s ease 0.2s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(48px, 8vw, 100px);
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 0.92;
+      text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+    }
+
+    /* ─── CONTACT SECTION ─── */
+    .contact-section {
+      background: var(--white);
+      padding: 90px 80px 100px;
+    }
+
+    .gradient-rule {
+      width: 52px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+      margin-bottom: 22px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-top: 10px;
+    }
+
+    /* ─── FORM ─── */
+    .contact-form h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 900;
+      color: #1a1a2e;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 36px;
+    }
+
+    .form-group { margin-bottom: 14px; }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+      font-family: 'Open Sans', sans-serif;
+      color: #333;
+      outline: none;
+      background: #fafafa;
+      border-radius: 3px;
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #9B3FD4;
+      box-shadow: 0 0 0 3px rgba(155,63,212,0.1);
+      background: #fff;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #aaa; }
+
+    .form-group textarea {
+      height: 140px;
+      resize: vertical;
+    }
+
+    .btn-submit {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 15px 48px;
+      background: var(--gradient);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      border-radius: 2px;
+      position: relative;
+      z-index: 0;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 6px 28px rgba(155,63,212,0.35);
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-hover);
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: -1;
+      border-radius: 2px;
+    }
+
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(240,64,138,0.4); }
+    .btn-submit:hover::before { opacity: 1; }
+
+    .success-msg {
+      display: none;
+      margin-top: 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── CONTACT INFO ─── */
+    .contact-info h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 900;
+      color: #1a1a2e;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 36px;
+    }
+
+    .info-block {
+      padding: 22px 0;
+      border-bottom: 1px solid #eee;
+      position: relative;
+    }
+
+    .info-block::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      width: 0; height: 2px;
+      background: var(--gradient);
+      transition: width 0.4s;
+    }
+
+    .info-block:hover::before { width: 60px; }
+
+    .info-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .info-block p {
+      font-size: 14.5px;
+      color: #444;
+      line-height: 1.9;
+    }
+
+    .info-block a {
+      color: #9B3FD4;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .info-block a:hover { color: #F0408A; text-decoration: underline; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #0a0a0a;
+      border-top: 1px solid rgba(155,63,212,0.2);
+      padding: 50px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .footer-social-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+    }
+
+    .footer-social-label span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .social-icons { display: flex; gap: 18px; align-items: center; }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px; height: 42px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      transition: border-color 0.3s, transform 0.3s;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-icon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .social-icon:hover::before { opacity: 0.2; }
+    .social-icon:hover { border-color: #9B3FD4; transform: translateY(-3px); }
+
+    .social-icon img {
+      width: 20px; height: 20px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      position: relative; z-index: 1;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+
+    .footer-copy a {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .topbar { padding: 12px 20px; }
+      .hamburger { display: flex; }
+
+      nav {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 260px; height: 100vh;
+        background: rgba(5,5,5,0.97);
+        border-left: 1px solid rgba(155,63,212,0.25);
+        transition: right 0.35s ease;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 90px;
+        z-index: 999;
+      }
+
+      nav.open { right: 0; }
+      nav ul { flex-direction: column; gap: 0; width: 100%; }
+
+      nav ul li a {
+        display: block;
+        padding: 16px 30px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 14px;
+      }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+      .contact-section { padding: 70px 50px 80px; }
+      .page-hero { padding: 110px 50px 60px; }
+    }
+
+    @media (max-width: 640px) {
+      .contact-section { padding: 50px 24px 60px; }
+      .page-hero { padding: 90px 24px 44px; min-height: 340px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP BAR ── -->
+  <header class="topbar" id="topbar">
+    <a class="logo" href="index.html">
+      <img
+        src="https://static.wixstatic.com/media/9c039d_a5d02242728c4a68bd9b38f7615494df~mv2.png/v1/fill/w_205,h_89,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Copy%20of%20Top%2010%20Must-See%20Sights%20in%20(1).png"
+        alt="4ML Logo"
+      />
+    </a>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="nav">
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Our Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="clients.html">Our Clients</a></li>
+        <li><a href="leadteam.html">Lead Team</a></li>
+        <li><a href="contact.html" class="active">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── PAGE HERO ── -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <p class="page-eyebrow">Fourth Media Logistics</p>
+      <h1>Get In<br>Touch</h1>
+    </div>
+  </section>
+
+  <!-- ── CONTACT CONTENT ── -->
+  <section class="contact-section">
+    <div class="gradient-rule"></div>
+
+    <div class="contact-grid">
+
+      <!-- FORM -->
+      <div class="contact-form">
+        <h2>Send Us a Message</h2>
+        <div class="form-group">
+          <input type="text" id="name" placeholder="Your Name" />
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Your Email Address" />
+        </div>
+        <div class="form-group">
+          <input type="text" id="subject" placeholder="Subject" />
+        </div>
+        <div class="form-group">
+          <textarea id="message" placeholder="Your Message"></textarea>
+        </div>
+        <button class="btn-submit" onclick="handleSubmit()">Send Message</button>
+        <p class="success-msg" id="successMsg">✓ Message sent — we'll be in touch shortly!</p>
+      </div>
+
+      <!-- INFO -->
+      <div class="contact-info">
+        <h2>Reach Out To Us</h2>
+
+        <div class="info-block">
+          <div class="info-label">Call / WhatsApp</div>
+          <p>+254 722 989209 &nbsp;|&nbsp; +254 782 249915</p>
+        </div>
+
+        <div class="info-block">
+          <div class="info-label">Email</div>
+          <p>
+            <a href="mailto:Info@fourthmedia.co.ke">Info@fourthmedia.co.ke</a><br/>
+            <a href="mailto:fourthmedialogistics@gmail.com">fourthmedialogistics@gmail.com</a>
+          </p>
+        </div>
+
+        <div class="info-block">
+          <div class="info-label">Mombasa</div>
+          <p>P.O Box 1 – 80100 GPO<br/>Mombasa<br/>+254 722 989209</p>
+        </div>
+
+        <div class="info-block">
+          <div class="info-label">Nairobi</div>
+          <p>+254 782 249915</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-social-label">Be a <span>SociaLight</span> and Follow Us:</p>
+      <div class="social-icons">
+        <a class="social-icon" href="https://www.facebook.com/4MLkeyna?mibextid=ZbWKwL" target="_blank" rel="noopener" aria-label="Facebook">
+          <img src="https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/23fd2a2be53141ed810f4d3dcdcd01fa.png" alt="Facebook"/>
+        </a>
+        <a class="social-icon" href="https://instagram.com/4mlive?igshid=NGVhN2U2NjQ0Yg%3D%3D" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="https://static.wixstatic.com/media/81af6121f84c41a5b4391d7d37fce12a.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/81af6121f84c41a5b4391d7d37fce12a.png" alt="Instagram"/>
+        </a>
+        <a class="social-icon" href="https://youtube.com/@4mlive007?si=B7FHr9kaRrC9JVcr" target="_blank" rel="noopener" aria-label="YouTube">
+          <img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"/>
+        </a>
+      </div>
+      <p class="footer-copy">
+        &copy; 2024 4ML &nbsp;|&nbsp; Powered and secured by
+        <a href="#" target="_blank" rel="noopener">Latitude</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => {
+      topbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+    function handleSubmit() {
+      const fields = ['name', 'email', 'subject', 'message'];
+      const allFilled = fields.every(id => document.getElementById(id).value.trim());
+      if (allFilled) {
+        document.getElementById('successMsg').style.display = 'block';
+        fields.forEach(id => document.getElementById(id).value = '');
+      } else {
+        alert('Please fill in all fields before submitting.');
+      }
+    }
+  </script>
+</body>
+</html>
