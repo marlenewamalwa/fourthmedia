@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Services | 4ML – Fourth Media Logistics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@300;400;600&display=swap"
+    rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --gradient: linear-gradient(135deg, #5B6CF5 0%, #9B3FD4 50%, #F0408A 100%);
       --gradient-hover: linear-gradient(135deg, #F0408A 0%, #9B3FD4 50%, #5B6CF5 100%);
       --dark: #111111;
       --white: #ffffff;
-      --nav-bg: rgba(10,10,10,0.85);
+      --nav-bg: rgba(10, 10, 10, 0.85);
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Open Sans', sans-serif;
@@ -28,22 +39,35 @@
     /* ─── TOP BAR ─── */
     .topbar {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 1000;
       backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 10px 40px;
-      border-bottom: 1px solid rgba(155,63,212,0.3);
+      border-bottom: 1px solid rgba(155, 63, 212, 0.3);
       transition: background 0.3s;
     }
 
-    .topbar.scrolled { background: rgba(5,5,5,0.97); }
+    .topbar.scrolled {
+      background: rgba(5, 5, 5, 0.97);
+    }
 
-    .logo img { height: 60px; object-fit: contain; display: block; }
+    .logo img {
+      height: 60px;
+      object-fit: contain;
+      display: block;
+    }
 
-    nav ul { list-style: none; display: flex; gap: 28px; align-items: center; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
 
     nav ul li a {
       text-decoration: none;
@@ -61,8 +85,10 @@
     nav ul li a::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0;
-      width: 0; height: 2px;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
       background: var(--gradient);
       transition: width 0.3s;
     }
@@ -76,10 +102,26 @@
     }
 
     nav ul li a.active::after,
-    nav ul li a:hover::after { width: 100%; }
+    nav ul li a:hover::after {
+      width: 100%;
+    }
 
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
 
     /* ─── PAGE HERO ─── */
     .page-hero {
@@ -103,14 +145,16 @@
     .page-hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(160deg, rgba(17,17,17,0.88) 0%, rgba(30,15,55,0.72) 50%, rgba(17,17,17,0.92) 100%);
+      background: linear-gradient(160deg, rgba(17, 17, 17, 0.88) 0%, rgba(30, 15, 55, 0.72) 50%, rgba(17, 17, 17, 0.92) 100%);
     }
 
     .page-hero::after {
       content: '';
       position: absolute;
-      left: 0; bottom: 0;
-      width: 100%; height: 3px;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 3px;
       background: var(--gradient);
     }
 
@@ -121,8 +165,15 @@
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .page-eyebrow {
@@ -146,7 +197,7 @@
       text-transform: uppercase;
       letter-spacing: 0.03em;
       line-height: 0.92;
-      text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+      text-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
     }
 
     /* ─── SERVICES SECTION ─── */
@@ -189,21 +240,25 @@
     }
 
     .service-card:hover {
-      box-shadow: 0 16px 50px rgba(155,63,212,0.12);
+      box-shadow: 0 16px 50px rgba(155, 63, 212, 0.12);
       transform: translateY(-4px);
     }
 
     .service-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 0; height: 4px;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 4px;
       background: var(--gradient);
       transition: width 0.45s ease;
       z-index: 2;
     }
 
-    .service-card:hover::before { width: 100%; }
+    .service-card:hover::before {
+      width: 100%;
+    }
 
     .service-card-img {
       position: relative;
@@ -219,12 +274,14 @@
       transition: transform 0.5s ease;
     }
 
-    .service-card:hover .service-card-img img { transform: scale(1.05); }
+    .service-card:hover .service-card-img img {
+      transform: scale(1.05);
+    }
 
     .service-card-img-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(10,5,20,0.45), transparent 60%);
+      background: linear-gradient(to top, rgba(10, 5, 20, 0.45), transparent 60%);
     }
 
     .service-card-body {
@@ -236,7 +293,7 @@
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.2em;
-      color: rgba(155,63,212,0.5);
+      color: rgba(155, 63, 212, 0.5);
       margin-bottom: 10px;
       text-transform: uppercase;
     }
@@ -275,7 +332,9 @@
       gap: 10px;
     }
 
-    .service-card ul li:last-child { border-bottom: none; }
+    .service-card ul li:last-child {
+      border-bottom: none;
+    }
 
     .service-card ul li::before {
       content: '';
@@ -299,7 +358,9 @@
     .cta-banner::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 3px;
       background: var(--gradient);
     }
@@ -308,10 +369,12 @@
     .cta-banner::after {
       content: '';
       position: absolute;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      width: 600px; height: 300px;
-      background: radial-gradient(ellipse, rgba(155,63,212,0.12) 0%, transparent 70%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(155, 63, 212, 0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -337,7 +400,7 @@
 
     .cta-banner p {
       font-size: 16px;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255, 255, 255, 0.6);
       margin-bottom: 44px;
       line-height: 1.6;
       position: relative;
@@ -369,7 +432,7 @@
       position: relative;
       z-index: 0;
       transition: transform 0.2s, box-shadow 0.3s;
-      box-shadow: 0 6px 30px rgba(155,63,212,0.45);
+      box-shadow: 0 6px 30px rgba(155, 63, 212, 0.45);
     }
 
     .btn-primary::before {
@@ -382,8 +445,14 @@
       z-index: -1;
     }
 
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(240,64,138,0.45); }
-    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(240, 64, 138, 0.45);
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
 
     .btn-ghost {
       display: inline-block;
@@ -396,20 +465,20 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       cursor: pointer;
       transition: border-color 0.3s, background 0.3s;
     }
 
     .btn-ghost:hover {
-      border-color: rgba(155,63,212,0.7);
-      background: rgba(155,63,212,0.1);
+      border-color: rgba(155, 63, 212, 0.7);
+      background: rgba(155, 63, 212, 0.1);
     }
 
     /* ─── FOOTER ─── */
     footer {
       background: #0a0a0a;
-      border-top: 1px solid rgba(155,63,212,0.2);
+      border-top: 1px solid rgba(155, 63, 212, 0.2);
       padding: 50px 40px;
     }
 
@@ -427,7 +496,7 @@
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.25em;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255, 255, 255, 0.55);
       text-transform: uppercase;
     }
 
@@ -438,16 +507,21 @@
       background-clip: text;
     }
 
-    .social-icons { display: flex; gap: 18px; align-items: center; }
+    .social-icons {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
 
     .social-icon {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 42px; height: 42px;
-      border: 1px solid rgba(255,255,255,0.15);
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 50%;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 255, 255, 0.04);
       transition: border-color 0.3s, transform 0.3s;
       text-decoration: none;
       position: relative;
@@ -463,19 +537,27 @@
       transition: opacity 0.3s;
     }
 
-    .social-icon:hover::before { opacity: 0.2; }
-    .social-icon:hover { border-color: #9B3FD4; transform: translateY(-3px); }
+    .social-icon:hover::before {
+      opacity: 0.2;
+    }
+
+    .social-icon:hover {
+      border-color: #9B3FD4;
+      transform: translateY(-3px);
+    }
 
     .social-icon img {
-      width: 20px; height: 20px;
+      width: 20px;
+      height: 20px;
       object-fit: contain;
       filter: brightness(0) invert(1);
-      position: relative; z-index: 1;
+      position: relative;
+      z-index: 1;
     }
 
     .footer-copy {
       font-size: 12px;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255, 255, 255, 0.3);
       font-family: 'Montserrat', sans-serif;
       letter-spacing: 0.08em;
       text-align: center;
@@ -491,21 +573,36 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1100px) {
-      .services-section { padding: 70px 50px 80px; }
-      .cta-banner { padding: 80px 50px; }
-      .page-hero { padding: 110px 50px 60px; }
+      .services-section {
+        padding: 70px 50px 80px;
+      }
+
+      .cta-banner {
+        padding: 80px 50px;
+      }
+
+      .page-hero {
+        padding: 110px 50px 60px;
+      }
     }
 
     @media (max-width: 900px) {
-      .topbar { padding: 12px 20px; }
-      .hamburger { display: flex; }
+      .topbar {
+        padding: 12px 20px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
 
       nav {
         position: fixed;
-        top: 0; right: -100%;
-        width: 260px; height: 100vh;
-        background: rgba(5,5,5,0.97);
-        border-left: 1px solid rgba(155,63,212,0.25);
+        top: 0;
+        right: -100%;
+        width: 260px;
+        height: 100vh;
+        background: rgba(5, 5, 5, 0.97);
+        border-left: 1px solid rgba(155, 63, 212, 0.25);
         transition: right 0.35s ease;
         display: flex;
         align-items: flex-start;
@@ -513,26 +610,57 @@
         z-index: 999;
       }
 
-      nav.open { right: 0; }
-      nav ul { flex-direction: column; gap: 0; width: 100%; }
+      nav.open {
+        right: 0;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+      }
 
       nav ul li a {
         display: block;
         padding: 16px 30px;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         font-size: 14px;
       }
 
-      .services-grid { grid-template-columns: 1fr; }
-      .page-hero { padding: 100px 30px 50px; }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-hero {
+        padding: 100px 30px 50px;
+      }
     }
 
     @media (max-width: 640px) {
-      .services-section { padding: 50px 24px 60px; }
-      .cta-banner { padding: 60px 24px; }
-      .page-hero { padding: 90px 24px 44px; min-height: 360px; }
-      .cta-buttons { flex-direction: column; align-items: center; }
-      .btn-primary, .btn-ghost { width: 100%; max-width: 320px; text-align: center; }
+      .services-section {
+        padding: 50px 24px 60px;
+      }
+
+      .cta-banner {
+        padding: 60px 24px;
+      }
+
+      .page-hero {
+        padding: 90px 24px 44px;
+        min-height: 360px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+      }
     }
 
     /* ─── MODAL ─── */
@@ -540,7 +668,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(5,5,15,0.82);
+      background: rgba(5, 5, 15, 0.82);
       backdrop-filter: blur(6px);
       z-index: 2000;
       align-items: center;
@@ -548,11 +676,13 @@
       padding: 24px;
     }
 
-    .modal-backdrop.open { display: flex; }
+    .modal-backdrop.open {
+      display: flex;
+    }
 
     .modal {
       background: #fff;
-      max-width: 680px;
+      max-width: 1000px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
@@ -561,8 +691,15 @@
     }
 
     @keyframes modalIn {
-      from { opacity: 0; transform: translateY(24px) scale(0.97); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .modal-img {
@@ -572,7 +709,8 @@
     }
 
     .modal-img img {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
     }
@@ -580,14 +718,16 @@
     .modal-img-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(10,5,20,0.55), transparent 60%);
+      background: linear-gradient(to top, rgba(10, 5, 20, 0.55), transparent 60%);
     }
 
     .modal-img::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0;
-      width: 100%; height: 4px;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
       background: var(--gradient);
     }
 
@@ -600,7 +740,7 @@
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.22em;
-      color: rgba(155,63,212,0.55);
+      color: rgba(155, 63, 212, 0.55);
       text-transform: uppercase;
       margin-bottom: 10px;
     }
@@ -643,7 +783,8 @@
     .modal-list li::before {
       content: '';
       display: inline-block;
-      width: 7px; height: 7px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--gradient);
       flex-shrink: 0;
@@ -651,10 +792,12 @@
 
     .modal-close {
       position: absolute;
-      top: 16px; right: 16px;
-      width: 36px; height: 36px;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
       border: none;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 50%;
       cursor: pointer;
       display: flex;
@@ -667,10 +810,15 @@
       line-height: 1;
     }
 
-    .modal-close:hover { background: #fff; transform: scale(1.1); }
+    .modal-close:hover {
+      background: #fff;
+      transform: scale(1.1);
+    }
 
     /* ─── CARD CLICK STYLE ─── */
-    .service-card { cursor: pointer; }
+    .service-card {
+      cursor: pointer;
+    }
 
     .card-cta {
       display: inline-flex;
@@ -688,18 +836,18 @@
       background-clip: text;
     }
 
-    .card-cta svg { flex-shrink: 0; }
+    .card-cta svg {
+      flex-shrink: 0;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- ── TOP BAR ── -->
   <header class="topbar" id="topbar">
     <a class="logo" href="index.html">
-      <img
-        src="images/4mlogo.png"
-        alt="4ML Logo"
-      />
+      <img src="images/4mlogo.png" alt="4ML Logo" />
     </a>
     <div class="hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -709,7 +857,6 @@
         <li><a href="about.html">About Us</a></li>
         <li><a href="services.html" class="active">Our Services</a></li>
         <li><a href="clients.html">Our Clients</a></li>
-        <li><a href="leadteam.html">Lead Team</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </nav>
@@ -732,59 +879,93 @@
 
     <div class="services-grid">
 
-      <!-- Broadcast & Live Transmission -->
+
       <div class="service-card" onclick="openModal('modal-01')">
         <div class="service-card-img">
-          <img src="media/IMG20221211180229.jpg" alt="Broadcast & Live Transmission" />
+          <img src="images/videoeditor.png" alt="Broadcast & Live Transmission" />
           <div class="service-card-img-overlay"></div>
         </div>
         <div class="service-card-body">
           <div class="service-num">01</div>
-          <h2>Broadcast &amp; Live<br>Transmission</h2>
-          <p>Real-time technical management for live events and digital streaming.</p>
-          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#5B6CF5"/><stop offset="100%" stop-color="#F0408A"/></linearGradient></defs><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          <h2>Technical Infrastructure<br>&amp; Asset Management</h2>
+          <p>Elevate your productions with our comprehensive Technical Infrastructure &amp; Asset Management
+            services, designed for the demands of modern media workflows. We specialize in high-end cinema and
+            broadcast equipment rental, precision procurement of specialized multimedia hardware, and expert
+            equipment maintenance with round-the-clock technical support—ensuring seamless operations.</p>
+          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <defs>
+                <linearGradient id="g" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#5B6CF5" />
+                  <stop offset="100%" stop-color="#F0408A" />
+                </linearGradient>
+              </defs>
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg></span>
         </div>
       </div>
 
-      <!-- Technical Infrastructure & Asset Management -->
+
       <div class="service-card" onclick="openModal('modal-02')">
         <div class="service-card-img">
-          <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?w=700&q=80" alt="Technical Infrastructure" />
+          <img src="images/cameraoperator.png" alt="Technical Infrastructure" />
           <div class="service-card-img-overlay"></div>
         </div>
         <div class="service-card-body">
           <div class="service-num">02</div>
-          <h2>Technical Infrastructure<br>&amp; Asset Management</h2>
-          <p>Industry-standard technology and equipment — without the overhead of ownership.</p>
-          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          <h2>Professional Talent<br>Outsourcing</h2>
+          <p>Unlock top-tier creative and technical talent without the hassle of recruitment. Our Professional Talent
+            Outsourcing service provides vetted cinematographers, photographers, post-production editors, on-site
+            technical crews, and specialized pros for commercial and documentary productions—delivering
+            seamless manpower for short-term gigs or long-term deployments.</p>
+          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg></span>
         </div>
       </div>
 
-      <!-- Strategic Consultancy & System Integration -->
+      
       <div class="service-card" onclick="openModal('modal-03')">
         <div class="service-card-img">
-          <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=700&q=80" alt="Strategic Consultancy" />
+          <img src="images/strategicplanning.png" alt="Strategic Consultancy" />
           <div class="service-card-img-overlay"></div>
         </div>
         <div class="service-card-body">
           <div class="service-num">03</div>
-          <h2>Strategic Consultancy<br>&amp; System Integration</h2>
-          <p>Optimizing media presence and internal workflows through strategic guidance.</p>
-          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          <h2>Strategic Consultancy<br>&amp; Digital Integration</h2>
+          <p>Transform your media operations with expert guidance and seamless tech integration. Our Strategic
+            Consultancy &amp; digital Integration services optimize workflows, drive digital transformations for
+            corporates, and conduct technical feasibility studies for ambitious projects—empowering broadcasters,
+            studios, and brands to thrive in a fast-evolving industry.</p>
+          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg></span>
         </div>
       </div>
 
-      <!-- Professional Elite Talent -->
+      <!-- Professional Talent Outsourcing -->
       <div class="service-card" onclick="openModal('modal-04')">
         <div class="service-card-img">
-          <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=700&q=80" alt="Professional Elite Talent" />
+          <img src="images/livestreaming.png" alt="Professional Talent Outsourcing" />
           <div class="service-card-img-overlay"></div>
         </div>
         <div class="service-card-body">
           <div class="service-num">04</div>
-          <h2>Professional Elite<br>Talent</h2>
-          <p>An elite roster of technical and creative professionals for any project scale.</p>
-          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          <h2>Broadcast<br>&amp; Live Transmission</h2>
+          <p>Deliver captivating live experiences to audiences worldwide with our Broadcast &amp; Live Transmission
+            services. We handle multi-camera live streaming and OB (Outside Broadcast) management, real-time
+            signal distribution, and virtual/hybrid event technical direction—powered by redundant fiber, satellite,
+            and IP networks for flawless broadcasts.</p>
+          <span class="card-cta">Learn More <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="url(#g)"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg></span>
         </div>
       </div>
 
@@ -806,14 +987,23 @@
     <div class="footer-inner">
       <p class="footer-social-label">Be a <span>SociaLight</span> and Follow Us:</p>
       <div class="social-icons">
-        <a class="social-icon" href="https://www.facebook.com/4MLkeyna?mibextid=ZbWKwL" target="_blank" rel="noopener" aria-label="Facebook">
-          <img src="https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/23fd2a2be53141ed810f4d3dcdcd01fa.png" alt="Facebook"/>
+        <a class="social-icon" href="https://www.facebook.com/4MLkeyna?mibextid=ZbWKwL" target="_blank" rel="noopener"
+          aria-label="Facebook">
+          <img
+            src="https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/23fd2a2be53141ed810f4d3dcdcd01fa.png"
+            alt="Facebook" />
         </a>
-        <a class="social-icon" href="https://instagram.com/4mlive?igshid=NGVhN2U2NjQ0Yg%3D%3D" target="_blank" rel="noopener" aria-label="Instagram">
-          <img src="https://static.wixstatic.com/media/81af6121f84c41a5b4391d7d37fce12a.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/81af6121f84c41a5b4391d7d37fce12a.png" alt="Instagram"/>
+        <a class="social-icon" href="https://instagram.com/4mlive?igshid=NGVhN2U2NjQ0Yg%3D%3D" target="_blank"
+          rel="noopener" aria-label="Instagram">
+          <img
+            src="https://static.wixstatic.com/media/81af6121f84c41a5b4391d7d37fce12a.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/81af6121f84c41a5b4391d7d37fce12a.png"
+            alt="Instagram" />
         </a>
-        <a class="social-icon" href="https://youtube.com/@4mlive007?si=B7FHr9kaRrC9JVcr" target="_blank" rel="noopener" aria-label="YouTube">
-          <img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"/>
+        <a class="social-icon" href="https://youtube.com/@4mlive007?si=B7FHr9kaRrC9JVcr" target="_blank" rel="noopener"
+          aria-label="YouTube">
+          <img
+            src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/203dcdc2ac8b48de89313f90d2a4cda1.png"
+            alt="YouTube" />
         </a>
       </div>
       <p class="footer-copy">
@@ -836,22 +1026,37 @@
   </script>
 
   <!-- ── MODALS ── -->
+
+  <!-- Modal 01: Broadcast & Live Transmission -->
   <div class="modal-backdrop" id="modal-01" onclick="closeOnBackdrop(event, 'modal-01')">
     <div class="modal">
       <button class="modal-close" onclick="closeModal('modal-01')" aria-label="Close">&#x2715;</button>
       <div class="modal-img">
-        <img src="media/IMG20221211180229.jpg" alt="Broadcast & Live Transmission" />
+        <img src="images/livestreaming.png" alt="Technical Infrastructure & Asset Management" />
         <div class="modal-img-overlay"></div>
       </div>
       <div class="modal-body">
         <div class="modal-num">01</div>
-        <h2 class="modal-title">Broadcast &amp; Live Transmission</h2>
-        <p class="modal-desc">From live events to digital streaming, we manage the technical complexities of real-time transmission — ensuring your message reaches audiences seamlessly, wherever they are.</p>
+        <h2>Technical Infrastructure<br>&amp; Asset Management</h2>
         <ul class="modal-list">
-          <li>Hybrid Meetings</li>
-          <li>Live Streaming</li>
-          <li>Virtual Events</li>
-          <li>Video Conferencing</li>
+          <li><strong>High-End Cinema and Broadcast Equipment Rental</strong>Access cutting-edge gear tailored for 4K/8K resolutions, immersive lighting setups, and professional
+audio systems. Our rental fleet includes industry-leading brands like Sony and Canon, broadcast
+switchers from Black magic and Sony, dynamic LED/RGB lighting panels, and high-fidelity audio mixers.
+Whether you&#39;re shooting a feature film, live event, or corporate broadcast, we deliver calibrated, ready-
+to-deploy kits with flexible rental terms—from daily shoots to long-term projects. All equipment
+undergoes rigorous pre-rental inspections to guarantee peak performance, minimizing downtime on set.</li>
+          <li><strong>Precision Procurement of Specialized Multimedia Hardware</strong> Sourcing the right tools shouldn&#39;t slow you down. Our procurement team handles end-to-end
+acquisition of niche multimedia hardware, from custom video walls and HDR monitors to VR/AR rigs and
+advanced signal processors. We partner with global suppliers to secure rare or high-spec components at
+competitive rates, managing logistics, customs, and integration. Need a bespoke 8K workflow setup or
+obsolete part replacements? We provide detailed specs consultations, budget optimization, and future-
+proof recommendations to align with your project&#39;s technical roadmap.</li>
+          <li><strong>Equipment Maintenance and Technical Support</strong>Keep your assets in prime condition with our proactive maintenance programs and on-demand support.
+Our certified technicians perform scheduled calibrations, firmware updates, repairs, and diagnostics
+using OEM tools for cinema cameras, lighting consoles, and audio gear. We offer on-site service across
+Mombasa and beyond, remote troubleshooting via secure VPN access, and 24/7 helpdesk for urgent
+issues. Extend equipment lifespan, reduce repair costs, and maintain warranty compliance with our
+asset tracking system, which logs usage, service history, and predictive analytics to prevent failures.</li>
         </ul>
       </div>
     </div>
@@ -861,18 +1066,29 @@
     <div class="modal">
       <button class="modal-close" onclick="closeModal('modal-02')" aria-label="Close">&#x2715;</button>
       <div class="modal-img">
-        <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?w=700&q=80" alt="Technical Infrastructure" />
+        <img src="images/cameraoperator.png" alt="Technical Infrastructure" />
         <div class="modal-img-overlay"></div>
       </div>
       <div class="modal-body">
         <div class="modal-num">02</div>
-        <h2 class="modal-title">Technical Infrastructure &amp; Asset Management</h2>
-        <p class="modal-desc">We provide access to industry-standard technology, ensuring creators and organizations have the tools they need without the overhead of ownership. From procurement to on-site deployment, we handle it all.</p>
+        <h2>Professional Talent<br>Outsourcing</h2>
         <ul class="modal-list">
-          <li>Cinema &amp; Broadcast Cameras</li>
-          <li>Grip &amp; Lighting</li>
-          <li>Audio Solutions</li>
-          <li>Procurement &amp; Specialized Media Hardware</li>
+          <li><strong>Vetted Professionals</strong> Tap into our curated pool of industry-certified talent, rigorously vetted for skills, reliability, and portfolio
+quality. Cinematographers bring expertise in 4K/8K shoots, drone ops, and Steadicam work;
+photographers excel in stills, product shoots, and event coverage; post-production editors master
+DaVinci Resolve, Premiere Pro, and After Effects for polished cuts, color grading, and VFX. Each pro
+undergoes background checks, skill assessments, and client references, ensuring they align perfectly
+with your vision and deadlines.</li>
+          <li><strong>On-Site Technical Crew for Short-Term and Long-Term Deployments</strong> Need hands-on support where it matters most? Deploy our technical crews—gaffers, sound engineers,
+grip teams, and data wranglers—for flexible project durations. From one-day commercials to multi-
+month documentaries, we handle logistics, insurance, and payroll. Crews arrive pre-briefed, equipped
+with comms gear, and ready to integrate with your team, providing everything from lighting setups to
+live signal monitoring.</li>
+          <li><strong>Specialized Talent for Commercial and Documentary Production</strong> For high-stakes projects, we source niche experts like underwater DPs for documentaries, motion
+graphics artists for commercials, or bilingual editors for international campaigns. Our specialists have
+credits on award-winning films, ad series, and branded content, with proven adaptability to Kenya&#39;s
+diverse locations—from Mombasa beaches to urban sets. We customize teams based on script needs,
+budget, and timelines, fostering collaboration that drives standout results.</li>
         </ul>
       </div>
     </div>
@@ -882,40 +1098,61 @@
     <div class="modal">
       <button class="modal-close" onclick="closeModal('modal-03')" aria-label="Close">&#x2715;</button>
       <div class="modal-img">
-        <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=700&q=80" alt="Strategic Consultancy" />
+        <img src="images/strategicplanning.png" alt="Strategic Consultancy" />
         <div class="modal-img-overlay"></div>
       </div>
       <div class="modal-body">
         <div class="modal-num">03</div>
-        <h2 class="modal-title">Strategic Consultancy &amp; System Integration</h2>
-        <p class="modal-desc">We offer strategic guidance to help organizations optimize their media presence and internal workflows. Our consultants bridge the gap between creative vision and technical execution.</p>
+        <h2 class="modal-title">Strategic Consultancy &amp; Digital Integration</h2>
+
         <ul class="modal-list">
-          <li>Media Workflow Optimization</li>
-          <li>Digital Transformation for Corporate Communication</li>
-          <li>Technical Feasibility Studies</li>
-          <li>Corporate Communication Strategy</li>
+          <li><strong>Media Workflow Optimization &amp; Studio Infrastructure Design</strong> Streamline your end-to-end processes with bespoke consultancy. We analyze current setups using tools
+like workflow mapping and bottleneck audits, then design scalable studio infrastructures—from IP-
+based video networks and cloud editing bays to automated asset management systems. Whether
+upgrading a post-production house or building a new broadcast facility, our architects deliver blueprints,
+vendor recommendations, and phased implementation plans that boost efficiency by up to 40%.</li>
+          <li><strong>Digital Transformation for Corporate Communication</strong> Modernize internal media teams with tailored digital strategies. We guide corporations through
+migrations to hybrid cloud platforms (e.g., AWS Media Services, Avid MediaCentral), AI-driven content
+automation, and collaborative tools like Frame.io or Slack integrations. From video podcast studios to
+enterprise-wide video distribution, our roadmaps ensure secure, cost-effective shifts that enhance
+storytelling, employee engagement, and brand consistency.</li>
+          <li><strong>Technical Feasibility Studies for Large-Scale Projects</strong>Mitigate risks on big ventures with in-depth assessments. Our engineers evaluate site surveys, power
+requirements, bandwidth needs, and regulatory compliance for projects like 8K live events, virtual
+production stages, or regional broadcast hubs. We produce comprehensive reports with ROI projections,
+risk matrices, proof-of-concept prototypes, and phased budgets—helping you secure funding and
+execute with confidence.</li>
         </ul>
       </div>
     </div>
   </div>
 
+  <!-- Modal 04: Professional Talent Outsourcing -->
   <div class="modal-backdrop" id="modal-04" onclick="closeOnBackdrop(event, 'modal-04')">
     <div class="modal">
       <button class="modal-close" onclick="closeModal('modal-04')" aria-label="Close">&#x2715;</button>
       <div class="modal-img">
-        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=700&q=80" alt="Professional Elite Talent" />
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=700&q=80"
+          alt="Professional Talent Outsourcing" />
         <div class="modal-img-overlay"></div>
       </div>
       <div class="modal-body">
         <div class="modal-num">04</div>
-        <h2 class="modal-title">Professional Elite Talent</h2>
-        <p class="modal-desc">We maintain an elite roster of technical and creative professionals available for short-term projects or long-term placements — vetted, skilled, and ready to deliver at the highest level.</p>
+        <h2>Broadcast<br>&amp; Live Transmission</h2>
         <ul class="modal-list">
-          <li>Photographers</li>
-          <li>Filmmakers</li>
-          <li>Camera Operators</li>
-          <li>Sound Technicians</li>
-          <li>Video Editors</li>
+          <li><strong>Multi-Camera Live Streaming</strong> Capture every angle with precision-orchestrated multi-camera setups. . From sports events and concerts
+to corporate keynotes, we manage shading, tally lights, audio mixing, and wireless comms—deploying
+rapidly for one-off shoots or ongoing series, with embedded encoders for platforms like YouTube, Zoom,
+or custom CDNs.</li>
+          <li><strong>Real-Time Signal Distribution for Global Audiences</strong> — Reach viewers anywhere without interruptions. We distribute pristine signals via bonded cellular (e.g.,
+TVU, LiveU), satellite uplinks (Intelsat, Eutelsat), and internet SRT/RTMP protocols, ensuring low-latency
+delivery to international broadcasters, OTT services, and social feeds. Redundant paths, automated
+failover, and 24/7 monitoring guarantee 99.99% uptime, scaling from local Kenyan audiences to global
+reach with multi-language commentary options.</li>
+          <li><strong>Virtual and Hybrid Event Technical Direction</strong> Blend physical and digital worlds effortlessly. Our technical directors oversee LED walls, AR overlays,
+NDI/IP workflows, and audience interaction tools (e.g., Slido, Hopin integrations) for hybrid conferences,
+e-sports, or virtual productions. We provide end-to-end direction—from pre-vis planning and rehearsal
+coordination to live switching and post-event archiving—ensuring immersive, glitch-free experiences
+that engage remote and on-site participants alike.</li>
         </ul>
       </div>
     </div>
@@ -943,4 +1180,5 @@
     });
   </script>
 </body>
+
 </html>

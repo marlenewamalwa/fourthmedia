@@ -173,121 +173,114 @@
       line-height: 1.8;
       max-width: 680px;
     }
-
-    /* ─── WHAT WE DO ─── */
-    .what-we-do {
+    /* ─── TEAM SECTION ─── */
+    .team-section {
       background: var(--white);
-      padding: 90px 80px;
-    }
-
-    .section-header {
-      margin-bottom: 60px;
+      padding: 90px 80px 80px;
     }
 
     .gradient-rule {
       width: 52px;
       height: 4px;
       background: var(--gradient);
-      margin-bottom: 22px;
       border-radius: 2px;
+      margin-bottom: 22px;
     }
 
-    .section-header h2 {
+    .section-intro {
       font-family: 'Montserrat', sans-serif;
-      font-size: clamp(36px, 5vw, 64px);
+      font-size: clamp(28px, 4vw, 48px);
       font-weight: 900;
       color: #1a1a2e;
-      line-height: 1.05;
       text-transform: uppercase;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
+      margin-bottom: 60px;
+      line-height: 1.1;
     }
 
-    .services-grid {
+    .team-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      border-top: 1px solid #e8e8e8;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px 80px;
     }
 
-    .service-card {
-      padding: 40px 32px 40px 0;
-      border-right: 1px solid #e8e8e8;
+    .team-card {
+      display: flex;
+      flex-direction: column;
       position: relative;
-      transition: background 0.3s;
     }
 
-    .service-card:last-child {
-      border-right: none;
-      padding-right: 0;
+    .team-card-image {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 28px;
     }
 
-    .service-card:first-child {
-      padding-left: 0;
+    .team-card-image img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      transition: transform 0.5s ease;
     }
 
-    .service-card::before {
+    .team-card:hover .team-card-image img {
+      transform: scale(1.04);
+    }
+
+    /* Gradient overlay on image bottom */
+    .team-card-image::after {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 0; height: 3px;
-      background: var(--gradient);
-      transition: width 0.4s ease;
+      left: 0; bottom: 0;
+      width: 100%; height: 40%;
+      background: linear-gradient(to top, rgba(17,17,17,0.5), transparent);
+      pointer-events: none;
     }
 
-    .service-card:hover::before { width: 100%; }
+    /* Gradient accent bar on hover */
+    .team-card-image::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 4px;
+      background: var(--gradient);
+      transition: width 0.4s ease;
+      z-index: 2;
+    }
 
-    .service-num {
+    .team-card:hover .team-card-image::before { width: 100%; }
+
+    .team-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #1a1a2e;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .team-card .role {
       font-family: 'Montserrat', sans-serif;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.2em;
-      color: rgba(155,63,212,0.5);
+      text-transform: uppercase;
       margin-bottom: 16px;
-      text-transform: uppercase;
-    }
-
-    .service-card h3 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      color: #1a1a2e;
-      line-height: 1.45;
-      margin-bottom: 18px;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-
-    .service-card p {
-      font-size: 13.5px;
-      color: #666;
-      line-height: 1.75;
-      margin-bottom: 20px;
-    }
-
-    .read-more {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-decoration: none;
       background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      position: relative;
     }
 
-    .read-more::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: 0;
-      width: 0; height: 1px;
-      background: var(--gradient);
-      transition: width 0.3s;
+    .team-card p {
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: #555;
     }
 
-    .read-more:hover::after { width: 100%; }
 
     /* ─── VALUES STRIP ─── */
     .values-strip {
@@ -296,7 +289,16 @@
       position: relative;
       overflow: hidden;
     }
-
+ .values-strip h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 900;
+      color: #1a1a2e;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 60px;
+      line-height: 1.1;
+    }
     .values-strip::before {
       content: '';
       position: absolute;
@@ -314,7 +316,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 40px;
     }
-
+ 
     .value-item {
       border-left: 2px solid rgba(155,63,212,0.3);
       padding-left: 24px;
@@ -490,14 +492,6 @@
 
       .page-hero { padding: 90px 24px 44px; }
 
-      .services-grid { grid-template-columns: 1fr; }
-
-      .service-card {
-        border-right: none;
-        border-bottom: 1px solid #e8e8e8;
-        padding: 30px 0;
-      }
-      .service-card:last-child { border-bottom: none; }
 
       .values-grid { grid-template-columns: 1fr; gap: 24px; }
 
@@ -510,10 +504,7 @@
   <!-- ── TOP BAR ── -->
   <header class="topbar" id="topbar">
     <a class="logo" href="index.html">
-      <img
-        src="https://static.wixstatic.com/media/9c039d_a5d02242728c4a68bd9b38f7615494df~mv2.png/v1/fill/w_205,h_89,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Copy%20of%20Top%2010%20Must-See%20Sights%20in%20(1).png"
-        alt="4ML Logo"
-      />
+      <img src="images/4mlogo.png" alt="4ML Logo" />
     </a>
     <div class="hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -523,7 +514,6 @@
         <li><a href="about.html" class="active">About Us</a></li>
         <li><a href="services.html">Our Services</a></li>
         <li><a href="clients.html">Our Clients</a></li>
-        <li><a href="leadteam.html">Lead Team</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </nav>
@@ -540,41 +530,34 @@
     </div>
   </section>
 
-  <!-- ── WHAT WE DO ── -->
-  <section class="what-we-do">
-    <div class="section-header">
-      <div class="gradient-rule"></div>
-      <h2>What We Do</h2>
-    </div>
+<section class="team-section">
+    <div class="gradient-rule"></div>
+    <h2 class="section-intro">Our Expert Team</h2>
 
-    <div class="services-grid">
+    <div class="team-grid">
 
-      <div class="service-card">
-        <div class="service-num">01</div>
-        <h3>Broadcast &amp; Live<br>Transmission</h3>
-        <p>Multi-camera live streaming and OB (Outside Broadcast) solutions for events of every scale, delivering flawless real-time coverage to audiences worldwide.</p>
-        <a href="services.html" class="read-more">Read More →</a>
+      <div class="team-card">
+        <div class="team-card-image">
+          <img
+            src="https://static.wixstatic.com/media/924254_d25d3c0c7d0e4f70b7c5cc74ad8d0ba5~mv2.jpg/v1/fill/w_319,h_433,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-03-09%20at%2009_05_edited.jpg"
+            alt="John Okode"
+          />
+        </div>
+        <h3>John Okode</h3>
+        <div class="role">Media Production &amp; Broadcasting</div>
+        <p>John is an experienced media professional with a background in TV production, broadcasting, and project management. He brings over 10 years of expertise as a media practitioner within events and conference environments.</p>
       </div>
 
-      <div class="service-card">
-        <div class="service-num">02</div>
-        <h3>Professional Talent<br>Outsourcing</h3>
-        <p>Vetted professionals including cinematographers, directors, sound engineers, and on-camera talent matched precisely to your production requirements.</p>
-        <a href="services.html" class="read-more">Read More →</a>
-      </div>
-
-      <div class="service-card">
-        <div class="service-num">03</div>
-        <h3>Strategic Consultancy<br>&amp; System Integration</h3>
-        <p>Media workflow optimization and studio infrastructure design — guiding organizations to build resilient, scalable media ecosystems.</p>
-        <a href="services.html" class="read-more">Read More →</a>
-      </div>
-
-      <div class="service-card">
-        <div class="service-num">04</div>
-        <h3>Technical Infrastructure &amp; Asset Management</h3>
-        <p>High-end cinema and broadcast equipment rental, asset tracking, and on-site technical support to keep your production running seamlessly.</p>
-        <a href="services.html" class="read-more">Read More →</a>
+      <div class="team-card">
+        <div class="team-card-image">
+          <img
+            src="https://static.wixstatic.com/media/924254_9e02d949dafa47d48276097fe617ec60~mv2.jpg/v1/fill/w_319,h_433,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-03-09%20at%2012_52_edite.jpg"
+            alt="Emily Okelo"
+          />
+        </div>
+        <h3>Emily Okelo</h3>
+        <div class="role">Public Relations &amp; Strategic Communications</div>
+        <p>Emily is a Public Relations specialist with a proven track record in the communications industry. She excels in strategic public relations, development communications, event management, media relations, market research, and social media marketing.</p>
       </div>
 
     </div>
