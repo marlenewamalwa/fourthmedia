@@ -198,24 +198,25 @@
       margin-bottom: 28px;
     }
 
-    .logo-grid {
+    /* Single unified grid for all rows */
+    .logo-grid,
+    .logo-grid.cols-4,
+    .logo-grid.cols-2 {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      margin-bottom: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 18px;
+      max-width: 100%;
     }
 
-    .logo-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
-    .logo-grid.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 480px; }
-
     .logo-card {
-      border: 1px solid #e8e8e8;
-      border-radius: 6px;
-      min-height: 100px;
+      border: 1px solid #ebebeb;
+      border-radius: 10px;
+      min-height: 110px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 18px 14px;
+      padding: 24px 20px;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
       font-size: 11px;
@@ -224,7 +225,7 @@
       letter-spacing: 0.04em;
       color: #444;
       text-transform: uppercase;
-      background: #fafafa;
+      background: #ffffff;
       transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
       position: relative;
       overflow: hidden;
@@ -240,17 +241,23 @@
     }
 
     .logo-card:hover {
-      border-color: rgba(155,63,212,0.3);
-      box-shadow: 0 6px 28px rgba(155,63,212,0.1);
-      transform: translateY(-3px);
+      border-color: rgba(155,63,212,0.25);
+      box-shadow: 0 8px 32px rgba(155,63,212,0.1);
+      transform: translateY(-4px);
     }
 
     .logo-card:hover::before { width: 100%; }
 
     .logo-card img {
       max-width: 100%;
-      max-height: 70px;
+      max-height: 64px;
+      width: auto;
       object-fit: contain;
+      transition: transform 0.35s ease;
+    }
+
+    .logo-card:hover img {
+      transform: scale(1.05);
     }
 
     a.logo-card {
@@ -258,19 +265,23 @@
       cursor: pointer;
     }
 
-    /* Colour accent variants */
-    .logo-card.accent-red   { border-color: #c0392b22; color: #c0392b; }
-    .logo-card.accent-orange{ border-color: #e67e2222; color: #e67e22; }
-    .logo-card.accent-navy  { border-color: #1a527622; color: #1a5276; }
-    .logo-card.accent-blue  { border-color: #2e86c122; color: #2e86c1; }
-    .logo-card.accent-brown { background: #6e2a0a; color: #fff; border-color: #6e2a0a; }
-    .logo-card.accent-pr    { border-color: #2471a322; color: #2471a3; }
-    .logo-card.accent-scarlet{ background: #922b21; color: #fff; border-color: #922b21; }
-    .logo-card.accent-dark  { border-color: #2c3e5022; color: #2c3e50; }
-    .logo-card.accent-teal  { border-color: #1abc9c22; color: #117a65; }
-    .logo-card.accent-gold  { border-color: #7d660822; color: #7d6608; }
-    .logo-card.accent-indigo{ border-color: #1a6b9e22; color: #1a6b9e; }
-    .logo-card.accent-purple{ border-color: #8e44ad22; color: #8e44ad; }
+    /* Remove all colour accent variants — unified look */
+    .logo-card.accent-red,
+    .logo-card.accent-orange,
+    .logo-card.accent-navy,
+    .logo-card.accent-blue,
+    .logo-card.accent-brown,
+    .logo-card.accent-pr,
+    .logo-card.accent-scarlet,
+    .logo-card.accent-dark,
+    .logo-card.accent-teal,
+    .logo-card.accent-gold,
+    .logo-card.accent-indigo,
+    .logo-card.accent-purple {
+      background: #ffffff;
+      border-color: #ebebeb;
+      color: #444;
+    }
 
     .logo-card .sub {
       display: block;
@@ -282,7 +293,7 @@
       opacity: 0.75;
     }
 
-    .logo-card.big-text { font-size: 22px; font-weight: 900; letter-spacing: 1px; }
+    .logo-card.big-text { font-size: 13px; font-weight: 900; letter-spacing: 1px; }
 
     /* ─── FOOTER ─── */
     footer {
@@ -431,13 +442,20 @@
     }
 
     /* ─── RESPONSIVE ─── */
+
+    /* Tablet landscape */
     @media (max-width: 1100px) {
       .clients-section { padding: 70px 50px 80px; }
       .page-hero { padding: 110px 50px 60px; }
-      .logo-grid { grid-template-columns: repeat(4, 1fr); }
-      .logo-grid.cols-4 { grid-template-columns: repeat(3, 1fr); }
+      .logo-grid,
+      .logo-grid.cols-4,
+      .logo-grid.cols-2 {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
     }
 
+    /* Tablet portrait */
     @media (max-width: 900px) {
       .topbar { padding: 12px 20px; }
       .hamburger { display: flex; }
@@ -454,10 +472,8 @@
         padding-top: 90px;
         z-index: 999;
       }
-
       nav.open { right: 0; }
       nav ul { flex-direction: column; gap: 0; width: 100%; }
-
       nav ul li a {
         display: block;
         padding: 16px 30px;
@@ -465,28 +481,51 @@
         font-size: 14px;
       }
 
-      .intro-row { flex-direction: column; gap: 30px; }
-      .intro-feature-logos { width: 100%; justify-content: flex-start; }
-
-      .logo-grid { grid-template-columns: repeat(3, 1fr); }
-      .logo-grid.cols-4 { grid-template-columns: repeat(3, 1fr); }
-      .logo-grid.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
-    }
-
-    @media (max-width: 640px) {
-      .clients-section { padding: 50px 24px 60px; }
-      .page-hero { padding: 90px 24px 44px; min-height: 360px; }
+      .page-hero { padding: 100px 30px 50px; min-height: 380px; }
+      .intro-row { flex-direction: column; gap: 24px; margin-bottom: 40px; }
+      .intro-text { max-width: 100%; }
 
       .logo-grid,
       .logo-grid.cols-4,
-      .logo-grid.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
-
-      .intro-feature-logos { flex-wrap: wrap; }
+      .logo-grid.cols-2 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
     }
 
-    @media (max-width: 400px) {
+    /* Mobile */
+    @media (max-width: 640px) {
+      .clients-section { padding: 50px 18px 60px; }
+      .page-hero { padding: 90px 20px 40px; min-height: 340px; }
+
       .logo-grid,
-      .logo-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+      .logo-grid.cols-4,
+      .logo-grid.cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .logo-card {
+        min-height: 90px;
+        padding: 18px 14px;
+        border-radius: 8px;
+      }
+
+      .logo-card img {
+        max-height: 50px;
+      }
+    }
+
+    /* Small phones */
+    @media (max-width: 380px) {
+      .logo-grid,
+      .logo-grid.cols-4,
+      .logo-grid.cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .logo-card { min-height: 80px; padding: 14px 10px; }
+      .logo-card img { max-height: 42px; }
     }
   </style>
 </head>
@@ -528,60 +567,49 @@
       <p class="intro-text">
         We provide expert media support for corporates, associations, and parastatals in collaboration with event organizers or through direct sourcing. Discover tailored solutions for your unique needs and challenges — learn more about our diverse client .
       </p>
-      <div class="intro-feature-logos">
-        <a href="https://nulooklinks.co.ke" target="_blank" rel="noopener" class="logo-card accent-indigo" style="width:160px; min-height:90px;">
-          <img src="images/nulook.jpeg" alt="NuLook Links LLP – Event Organizers" />
-        </a>
-        <a href="https://kenyaconferencesolutions.com" target="_blank" rel="noopener" class="logo-card accent-purple" style="width:160px; min-height:90px;">
-          <img src="images/kcs.jpeg" alt="Kenya Conference Solutions" />
-        </a>
-      </div>
     </div>
 
     <p class="clients-grid-label">Trusted by leading organizations</p>
 
-    <!-- Row 1: 4 clients -->
-    <div class="logo-grid cols-4">
-      <a href="https://www.kahc.co.ke/" target="_blank" rel="noopener" class="logo-card accent-red">
+    <div class="logo-grid">
+      <a href="https://www.kahc.co.ke/" target="_blank" rel="noopener" class="logo-card">
         <img src="images/kahc-logo.png" alt="Kenya Association of Hotel Keepers &amp; Caterers" />
       </a>
-      <a href="https://www.brightermonday.co.ke/" target="_blank" rel="noopener" class="logo-card accent-orange">
+      <a href="https://www.brightermonday.co.ke/" target="_blank" rel="noopener" class="logo-card">
         <img src="images/brightermonday.svg" alt="BrighterMonday Kenya" />
       </a>
-      <a href="https://www.mitchellcottsgroup.com/" target="_blank" rel="noopener" class="logo-card accent-navy">
+      <a href="https://www.mitchellcottsgroup.com/" target="_blank" rel="noopener" class="logo-card">
         <img src="images/mitch.webp" alt="Mitchell &amp; Cotts" />
       </a>
-      <a href="https://www.africatechsummit.com/" target="_blank" rel="noopener" class="logo-card accent-blue">
+      <a href="https://www.africatechsummit.com/" target="_blank" rel="noopener" class="logo-card">
         <img src="images/ATS.webp" alt="Africa Tech Summit" />
       </a>
-    </div>
-
-    <!-- Row 2: 5 clients -->
-    <div class="logo-grid">
-      <a href="https://www.aidshealth.org" target="_blank" rel="noopener" class="logo-card accent-brown big-text">
+      <a href="https://www.aidshealth.org" target="_blank" rel="noopener" class="logo-card">
         <img src="images/ahf.webp" alt="AHF Kenya" />
       </a>
-      <a href="https://prsk.co.ke/" target="_blank" rel="noopener" class="logo-card accent-pr">
+      <a href="https://prsk.co.ke/" target="_blank" rel="noopener" class="logo-card">
         <img src="images/prsk.svg" alt="Public Relations Society of Kenya" />
       </a>
-      <a href="https://www.sarovahotels.com/" target="_blank" rel="noopener" class="logo-card accent-scarlet">
-        <img src="images/sarova2.jpeg" alt="Sarova Whitesands Beach Resort &amp; Spa, Mombasa" />
+      <a href="https://www.sarovahotels.com/" target="_blank" rel="noopener" class="logo-card">
+        <img src="images/sarova2.jpeg" alt="Sarova Whitesands Beach Resort &amp; Spa" />
       </a>
-      <a href="https://www.nivben.co.ke/" target="_blank" rel="noopener" class="logo-card accent-dark">
+      <a href="https://www.nivben.co.ke/" target="_blank" rel="noopener" class="logo-card">
         <img src="images/nivben.webp" alt="NIVBEN LTD" />
       </a>
-      <a href="https://www.real411.org/" target="_blank" rel="noopener" class="logo-card accent-teal big-text">
-        <img src="images/411.png" alt="411" />
+      <a href="https://www.real411.org/" target="_blank" rel="noopener" class="logo-card">
+        <img src="images/411.png" alt="Real 411" />
       </a>
-    </div>
-
-    <!-- Row 3: 1 client -->
-    <div class="logo-grid cols-2">
-      <a href="https://iik.or.ke/" target="_blank" rel="noopener" class="logo-card accent-gold">
+      <a href="https://iik.or.ke/" target="_blank" rel="noopener" class="logo-card">
         <img src="images/iikimg.png" alt="Insurance Institute of Kenya" />
       </a>
+      <a href="https://nulooklinks.co.ke" target="_blank" rel="noopener" class="logo-card">
+        <img src="images/nulook.jpeg" alt="NuLook Links LLP" />
+      </a>
+      <a href="https://kenyaconferencesolutions.com" target="_blank" rel="noopener" class="logo-card">
+        <img src="images/kcs.jpeg" alt="Kenya Conference Solutions" />
+      </a>
     </div>
-
+    
   </section>
 
   <!-- ── FOOTER ── -->
@@ -590,13 +618,13 @@
       <p class="footer-social-label">Be a <span>SociaLight</span> and Follow Us:</p>
       <div class="social-icons">
         <a class="social-icon" href="https://www.facebook.com/4MLkeyna?mibextid=ZbWKwL" target="_blank" rel="noopener" aria-label="Facebook">
-          <img src="https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/23fd2a2be53141ed810f4d3dcdcd01fa.png" alt="Facebook"/>
+          <img src="images/fb" alt="Facebook"/>
         </a>
         <a class="social-icon" href="https://instagram.com/4mlive?igshid=NGVhN2U2NjQ0Yg%3D%3D" target="_blank" rel="noopener" aria-label="Instagram">
-          <img src="https://static.wixstatic.com/media/81af6121f84c41a5b4391d7d37fce12a.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/81af6121f84c41a5b4391d7d37fce12a.png" alt="Instagram"/>
+          <img src="images/ig" alt="Instagram"/>
         </a>
         <a class="social-icon" href="https://youtube.com/@4mlive007?si=B7FHr9kaRrC9JVcr" target="_blank" rel="noopener" aria-label="YouTube">
-          <img src="https://static.wixstatic.com/media/203dcdc2ac8b48de89313f90d2a4cda1.png/v1/fill/w_34,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/203dcdc2ac8b48de89313f90d2a4cda1.png" alt="YouTube"/>
+          <img src="images/yt" alt="YouTube"/>
         </a>
       </div>
       <p class="footer-copy">
@@ -605,7 +633,7 @@
       </p>
     </div>
   </footer>
-<a href="https://wa.me/254XXXXXXXXX?text=Hi%204ML%2C%20I%27d%20like%20to%20discuss%20a%20project."
+<a href="https://wa.me/254722989209?text=Hi%204ML%2C%20I%27d%20like%20to%20discuss%20a%20project."
   class="wa-float"
   target="_blank"
   rel="noopener"
