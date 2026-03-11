@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Services | 4ML – Fourth Media Logistics</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@300;400;600&display=swap"
     rel="stylesheet" />
@@ -137,7 +138,7 @@
     .page-hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('https://static.wixstatic.com/media/84770f_6b54c02021f64aa38d05264a9afc3f80.jpg/v1/fill/w_1920,h_1080,al_c,q_90,enc_avif,quality_auto/84770f_6b54c02021f64aa38d05264a9afc3f80.jpg');
+      background-image: url('images/abouthero.jpeg');
       background-size: cover;
       background-position: center 40%;
     }
@@ -1035,7 +1036,69 @@
       color: rgba(255,255,255,0.5);
       line-height: 1.6;
     }
+.wa-float {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 9999;
+    width: 58px;
+    height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+    text-decoration: none;
+    transition: transform 0.25s, box-shadow 0.25s;
+    animation: wa-pulse 2.5s ease-in-out infinite;
+  }
 
+  .wa-float:hover {
+    transform: scale(1.12) translateY(-3px);
+    box-shadow: 0 12px 36px rgba(37, 211, 102, 0.6);
+    animation: none;
+  }
+
+  .wa-tooltip {
+    position: absolute;
+    right: 68px;
+    background: #111111;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 7px 14px;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    transform: translateX(6px);
+  }
+
+  .wa-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-left-color: #111111;
+    border-right: none;
+  }
+
+  .wa-float:hover .wa-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @keyframes wa-pulse {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45); }
+    50%       { box-shadow: 0 6px 36px rgba(37, 211, 102, 0.75), 0 0 0 10px rgba(37, 211, 102, 0.08); }
+  }
     @media (max-width: 540px) {
       .form-row { grid-template-columns: 1fr; }
       .contact-modal-inner { padding: 36px 24px 32px; }
@@ -1141,7 +1204,7 @@
         <div class="service-card-body">
           <div class="service-num">02</div>
           <h2>Professional Talent<br>Outsourcing</h2>
-          <p>Unlock top-tier creative and technical talent without the hassle of recruitment. Our Professional Talent
+          <p>Unlock top-tier creative and technical talent without the hassle of recruitment through. Our Professional Talent
             Outsourcing service provides vetted cinematographers, photographers, post-production editors, on-site
             technical crews, and specialized pros for commercial and documentary productions—delivering
             seamless manpower for short-term gigs or long-term deployments.</p>
@@ -1238,7 +1301,18 @@
       </p>
     </div>
   </footer>
+<a href="https://wa.me/254722989209?text=Hi%204ML%2C%20I%27d%20like%20to%20discuss%20a%20project."
+  class="wa-float"
+  target="_blank"
+  rel="noopener"
+  aria-label="Chat on WhatsApp">
 
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" width="28" height="28">
+    <path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.737 5.469 2.027 7.773L0 32l8.468-2.004A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.28 13.28 0 01-6.771-1.854l-.486-.29-5.027 1.189 1.215-4.898-.317-.502A13.267 13.267 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.862c-.398-.199-2.354-1.162-2.718-1.294-.364-.133-.629-.199-.894.199-.265.398-1.028 1.294-1.26 1.561-.232.265-.464.298-.862.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.056-1.983-2.36-2.215-2.758-.232-.398-.025-.613.174-.811.179-.178.398-.464.597-.696.199-.232.265-.398.398-.663.133-.265.066-.497-.033-.696-.1-.199-.894-2.154-1.225-2.95-.322-.774-.65-.669-.894-.681l-.762-.013c-.265 0-.696.1-1.061.497-.364.398-1.393 1.361-1.393 3.317s1.426 3.847 1.625 4.112c.199.265 2.806 4.283 6.798 6.007.951.41 1.692.655 2.271.838.954.303 1.823.26 2.51.158.766-.114 2.354-.962 2.686-1.891.332-.929.332-1.726.232-1.891-.099-.166-.364-.265-.762-.464z"/>
+  </svg>
+
+  <span class="wa-tooltip">Chat with us</span>
+</a>
   <script>
     const topbar = document.getElementById('topbar');
     window.addEventListener('scroll', () => {
@@ -1299,7 +1373,7 @@ asset tracking system, which logs usage, service history, and predictive analyti
         <div class="modal-num">02</div>
         <h2>Professional Talent<br>Outsourcing</h2>
         <ul class="modal-list">
-          <li><strong>Vetted Professionals</strong> Tap into our curated pool of industry-certified talent, rigorously vetted for skills, reliability, and portfolio
+          <li><strong>Vetted Professionals</strong> Join <a href="https://creativesconnect.co.ke" target="_blank" rel="noopener" style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(155,63,212,0.4);padding-bottom:1px;">Creatives Connect</a> and tap into our curated pool of industry-certified talent, rigorously vetted for skills, reliability, and portfolio
 quality. Cinematographers bring expertise in 4K/8K shoots, drone ops, and Steadicam work;
 photographers excel in stills, product shoots, and event coverage; post-production editors master
 DaVinci Resolve, Premiere Pro, and After Effects for polished cuts, color grading, and VFX. Each pro
