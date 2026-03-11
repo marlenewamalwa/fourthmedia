@@ -668,8 +668,9 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(5, 5, 15, 0.82);
-      backdrop-filter: blur(6px);
+      background: rgba(3, 3, 10, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       z-index: 2000;
       align-items: center;
       justify-content: center;
@@ -681,21 +682,28 @@
     }
 
     .modal {
-      background: #fff;
-      max-width: 1000px;
+      background: linear-gradient(160deg, #13101e 0%, #0d0d18 60%, #111118 100%);
+      border: 1px solid rgba(155, 63, 212, 0.25);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04) inset;
+      max-width: 860px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
       position: relative;
-      animation: modalIn 0.3s ease both;
+      animation: modalIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(155,63,212,0.3) transparent;
     }
+
+    .modal::-webkit-scrollbar { width: 4px; }
+    .modal::-webkit-scrollbar-track { background: transparent; }
+    .modal::-webkit-scrollbar-thumb { background: rgba(155,63,212,0.35); border-radius: 2px; }
 
     @keyframes modalIn {
       from {
         opacity: 0;
-        transform: translateY(24px) scale(0.97);
+        transform: translateY(32px) scale(0.96);
       }
-
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -704,7 +712,7 @@
 
     .modal-img {
       position: relative;
-      height: 240px;
+      height: 260px;
       overflow: hidden;
     }
 
@@ -713,12 +721,13 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      filter: brightness(0.6) saturate(1.1);
     }
 
     .modal-img-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(10, 5, 20, 0.55), transparent 60%);
+      background: linear-gradient(to top, rgba(13, 10, 24, 0.95) 0%, rgba(13, 10, 24, 0.3) 50%, transparent 100%);
     }
 
     .modal-img::after {
@@ -727,38 +736,43 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 4px;
+      height: 2px;
       background: var(--gradient);
     }
 
     .modal-body {
-      padding: 36px 38px 44px;
+      padding: 32px 40px 48px;
     }
 
     .modal-num {
       font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.22em;
-      color: rgba(155, 63, 212, 0.55);
+      letter-spacing: 0.35em;
+      color: transparent;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
+    .modal-body h2,
     .modal-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: clamp(18px, 2.5vw, 26px);
+      font-size: clamp(20px, 2.8vw, 28px);
       font-weight: 900;
-      color: #1a1a2e;
+      color: #ffffff;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       line-height: 1.2;
-      margin-bottom: 18px;
+      margin-bottom: 24px;
     }
 
     .modal-desc {
       font-size: 14px;
-      color: #666;
+      color: rgba(255,255,255,0.55);
       line-height: 1.8;
       margin-bottom: 26px;
     }
@@ -766,53 +780,265 @@
     .modal-list {
       list-style: none;
       padding: 0;
-      border-top: 1px solid #f0f0f0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
 
     .modal-list li {
       font-size: 13.5px;
-      color: #444;
-      line-height: 1.7;
-      padding: 10px 0;
-      border-bottom: 1px solid #f0f0f0;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.75;
+      padding: 18px 0 18px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: block;
+      position: relative;
     }
 
     .modal-list li::before {
       content: '';
-      display: inline-block;
-      width: 7px;
-      height: 7px;
+      position: absolute;
+      left: 0;
+      top: 24px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--gradient);
       flex-shrink: 0;
     }
 
+    .modal-list li strong {
+      display: block;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
     .modal-close {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 36px;
-      height: 36px;
-      border: none;
-      background: rgba(255, 255, 255, 0.9);
+      top: 18px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      color: #333;
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
       z-index: 10;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s, color 0.2s;
       line-height: 1;
+      backdrop-filter: blur(4px);
     }
 
     .modal-close:hover {
-      background: #fff;
-      transform: scale(1.1);
+      background: rgba(155,63,212,0.2);
+      border-color: rgba(155,63,212,0.6);
+      color: #fff;
+      transform: scale(1.1) rotate(90deg);
+    }
+
+    /* ─── CONTACT FORM MODAL ─── */
+    #modal-contact {
+      z-index: 2100;
+    }
+
+    .contact-modal {
+      background: linear-gradient(160deg, #13101e 0%, #0d0d18 100%);
+      border: 1px solid rgba(155, 63, 212, 0.3);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 80px rgba(91,108,245,0.08);
+      max-width: 540px;
+      width: 100%;
+      position: relative;
+      animation: modalIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+      overflow: hidden;
+    }
+
+    .contact-modal::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+
+    .contact-modal-inner {
+      padding: 48px 44px 44px;
+    }
+
+    .contact-modal-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .contact-modal h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .contact-modal-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 13px 16px;
+      color: #fff;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13.5px;
+      outline: none;
+      transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+      width: 100%;
+    }
+
+    .form-group select option {
+      background: #13101e;
+      color: #fff;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: rgba(155,63,212,0.6);
+      background: rgba(155,63,212,0.07);
+      box-shadow: 0 0 0 3px rgba(155,63,212,0.12);
+    }
+
+    .form-group textarea {
+      resize: none;
+      min-height: 110px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--gradient);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      margin-top: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 6px 30px rgba(155, 63, 212, 0.4);
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(240, 64, 138, 0.45);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-success {
+      text-align: center;
+      padding: 24px 0 8px;
+      display: none;
+    }
+
+    .form-success .check-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5B6CF5, #9B3FD4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 24px;
+    }
+
+    .form-success h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .form-success p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 540px) {
+      .form-row { grid-template-columns: 1fr; }
+      .contact-modal-inner { padding: 36px 24px 32px; }
     }
 
     /* ─── CARD CLICK STYLE ─── */
@@ -847,7 +1073,7 @@
   <!-- ── TOP BAR ── -->
   <header class="topbar" id="topbar">
     <a class="logo" href="index.html">
-      <img src="images/4mlogo.png" alt="4ML Logo" />
+      <img src="images/4mlwhitelgo.png" alt="4ML Logo" />
     </a>
     <div class="hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -977,8 +1203,8 @@
     <h2>Planning Your<br><span>Next Project?</span></h2>
     <p>Let's bring your vision to life — from concept to broadcast.</p>
     <div class="cta-buttons">
-      <a href="contact.html" class="btn-primary">Let's Discuss Your Solution</a>
-      <a href=".html" class="btn-ghost">See Our Work</a>
+      <button onclick="openModal('modal-contact')" class="btn-primary">Let's Discuss Your Solution</button>
+      <a href="https://youtube.com/@4mlive007?si=B7FHr9kaRrC9JVcr" target="_blank" rel="noopener" class="btn-ghost">See Our Work</a>
     </div>
   </section>
 
@@ -1158,6 +1384,62 @@ that engage remote and on-site participants alike.</li>
     </div>
   </div>
 
+  <!-- ── CONTACT FORM MODAL ── -->
+  <div class="modal-backdrop" id="modal-contact" onclick="closeOnBackdrop(event, 'modal-contact')">
+    <div class="contact-modal">
+      <button class="modal-close" onclick="closeModal('modal-contact')" aria-label="Close">&#x2715;</button>
+      <div class="contact-modal-inner">
+        <div id="contact-form-wrap">
+          <p class="contact-modal-eyebrow">Fourth Media Logistics</p>
+          <h2>Let's Discuss<br>Your Solution</h2>
+          <p class="contact-modal-sub">Tell us about your project and we'll be in touch within 24 hours.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Full Name</label>
+              <input type="text" id="cf-name" placeholder="Jane Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Email Address</label>
+              <input type="email" id="cf-email" placeholder="jane@company.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-phone">Phone (Optional)</label>
+              <input type="tel" id="cf-phone" placeholder="+254 700 000 000" />
+            </div>
+            <div class="form-group">
+              <label for="cf-service">Service of Interest</label>
+              <select id="cf-service">
+                <option value="" disabled selected>Select a service</option>
+                <option>Technical Infrastructure &amp; Asset Management</option>
+                <option>Professional Talent Outsourcing</option>
+                <option>Strategic Consultancy &amp; Digital Integration</option>
+                <option>Broadcast &amp; Live Transmission</option>
+                <option>Other / General Enquiry</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cf-message">Tell Us About Your Project</label>
+            <textarea id="cf-message" placeholder="Describe your project, timeline, and any specific requirements..."></textarea>
+          </div>
+
+          <button class="form-submit" id="cf-submit" onclick="submitContactForm()">Send Message &rarr;</button>
+        </div>
+
+        <div class="form-success" id="contact-success">
+          <div class="check-icon">✓</div>
+          <h3>Message Sent!</h3>
+          <p>Thank you for reaching out. Our team will review your enquiry and get back to you within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     function openModal(id) {
       document.getElementById(id).classList.add('open');
@@ -1166,6 +1448,18 @@ that engage remote and on-site participants alike.</li>
     function closeModal(id) {
       document.getElementById(id).classList.remove('open');
       document.body.style.overflow = '';
+      // Reset contact form on close
+      if (id === 'modal-contact') {
+        document.getElementById('contact-form-wrap').style.display = '';
+        document.getElementById('contact-success').style.display = 'none';
+        document.getElementById('cf-name').value = '';
+        document.getElementById('cf-email').value = '';
+        document.getElementById('cf-phone').value = '';
+        document.getElementById('cf-service').selectedIndex = 0;
+        document.getElementById('cf-message').value = '';
+        document.getElementById('cf-submit').disabled = false;
+        document.getElementById('cf-submit').textContent = 'Send Message →';
+      }
     }
     function closeOnBackdrop(e, id) {
       if (e.target === document.getElementById(id)) closeModal(id);
@@ -1173,11 +1467,45 @@ that engage remote and on-site participants alike.</li>
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         document.querySelectorAll('.modal-backdrop.open').forEach(m => {
-          m.classList.remove('open');
-          document.body.style.overflow = '';
+          closeModal(m.id);
         });
       }
     });
+
+    function submitContactForm() {
+      const name    = document.getElementById('cf-name').value.trim();
+      const email   = document.getElementById('cf-email').value.trim();
+      const phone   = document.getElementById('cf-phone').value.trim();
+      const service = document.getElementById('cf-service').value;
+      const message = document.getElementById('cf-message').value.trim();
+
+      if (!name || !email || !message) {
+        alert('Please fill in your name, email, and message.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      const btn = document.getElementById('cf-submit');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const subject = encodeURIComponent(`4ML Enquiry: ${service || 'General'} — from ${name}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nService: ${service || 'N/A'}\n\nMessage:\n${message}`
+      );
+
+      // Open mailto — works as a reliable fallback without a backend
+      window.location.href = `mailto:fourthmedia@gmail.com?subject=${subject}&body=${body}`;
+
+      // Show success after a short delay
+      setTimeout(() => {
+        document.getElementById('contact-form-wrap').style.display = 'none';
+        document.getElementById('contact-success').style.display = 'block';
+      }, 800);
+    }
   </script>
 </body>
 
